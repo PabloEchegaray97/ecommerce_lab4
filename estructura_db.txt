@@ -1,0 +1,140 @@
+-- Script SQL para crear la base de datos del ecommerce de zapatillas
+-- Incluye tablas, claves foráneas y datos de prueba
+
+DROP TABLE IF EXISTS detail;
+DROP TABLE IF EXISTS purchase_order;
+DROP TABLE IF EXISTS users_adress;
+DROP TABLE IF EXISTS Adress;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS product_discount;
+DROP TABLE IF EXISTS discount;
+DROP TABLE IF EXISTS product_image;
+DROP TABLE IF EXISTS product_size;
+DROP TABLE IF EXISTS size;
+DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS type;
+
+CREATE TABLE type (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    typeId INT NOT NULL,
+    FOREIGN KEY (typeId) REFERENCES type(id)
+);
+
+CREATE TABLE product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    quantity INT NOT NULL,
+    description TEXT,
+    colour SMALLINT,
+    brand SMALLINT,
+    categoryId INT NOT NULL,
+    FOREIGN KEY (categoryId) REFERENCES category(id)
+);
+
+CREATE TABLE size (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE product_size (
+    idSize INT NOT NULL,
+    idProduct INT NOT NULL,
+    PRIMARY KEY (idSize, idProduct),
+    FOREIGN KEY (idSize) REFERENCES size(id),
+    FOREIGN KEY (idProduct) REFERENCES product(id)
+);
+
+CREATE TABLE product_image (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(255) NOT NULL,
+    productId INT NOT NULL,
+    FOREIGN KEY (productId) REFERENCES product(id)
+);
+
+CREATE TABLE discount (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    discountPercentage INT NOT NULL
+);
+
+CREATE TABLE product_discount (
+    idDiscount INT NOT NULL,
+    idProduct INT NOT NULL,
+    PRIMARY KEY (idDiscount, idProduct),
+    FOREIGN KEY (idDiscount) REFERENCES discount(id),
+    FOREIGN KEY (idProduct) REFERENCES product(id)
+);
+
+CREATE TABLE User (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role ENUM('ADMIN', 'CLIENT') NOT NULL
+);
+
+CREATE TABLE Adress (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    street VARCHAR(100) NOT NULL,
+    town VARCHAR(100) NOT NULL,
+    cpi VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE users_adress (
+    idUser INT NOT NULL,
+    idAdress INT NOT NULL,
+    PRIMARY KEY (idUser, idAdress),
+    FOREIGN KEY (idUser) REFERENCES User(id),
+    FOREIGN KEY (idAdress) REFERENCES Adress(id)
+);
+
+CREATE TABLE purchase_order (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idUserAdress INT NOT NULL,
+    date DATE NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    paymentMethod VARCHAR(50) NOT NULL,
+    status VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE detail (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity INT NOT NULL,
+    productId INT NOT NULL,
+    orderId INT NOT NULL,
+    FOREIGN KEY (productId) REFERENCES product(id),
+    FOREIGN KEY (orderId) REFERENCES purchase_order(id)
+);
+
+-- Inserts de prueba
+INSERT INTO type (name) VALUES ('Deportiva'), ('Casual');
+INSERT INTO category (name, typeId) VALUES ('Running', 1), ('Urbana', 2);
+INSERT INTO product (name, price, quantity, description, colour, brand, categoryId) VALUES
+('Nike Air Max', 129.99, 10, 'Zapatillas deportivas Nike Air Max', 1, 1, 1),
+('Adidas Superstar', 99.99, 15, 'Zapatillas clásicas Adidas', 2, 2, 2);
+INSERT INTO size (type) VALUES ('38'), ('39'), ('40');
+INSERT INTO product_size (idSize, idProduct) VALUES (1, 1), (2, 1), (3, 2);
+INSERT INTO product_image (type, productId) VALUES ('https://ejemplo.com/nike.jpg', 1), ('https://ejemplo.com/adidas.jpg', 2);
+INSERT INTO discount (startDate, endDate, discountPercentage) VALUES ('2024-03-01', '2024-03-31', 10);
+INSERT INTO product_discount (idDiscount, idProduct) VALUES (1, 1);
+INSERT INTO User (name, email, password, role) VALUES 
+('Juan Perez', 'juan@mail.com', '1234', 'CLIENT'), 
+('Admin', 'admin@mail.com', 'admin', 'ADMIN');
+INSERT INTO Adress (street, town, cpi) VALUES 
+('Calle Falsa 123', 'Springfield', '1234'), 
+('Av. Siempre Viva 742', 'Shelbyville', '5678');
+INSERT INTO users_adress (idUser, idAdress) VALUES (1, 1), (2, 2);
+INSERT INTO purchase_order (idUserAdress, date, total, paymentMethod, status) VALUES 
+(1, '2024-03-20', 259.98, 'Tarjeta', 'PAGADO');
+INSERT INTO detail (quantity, productId, orderId) VALUES 
+(2, 1, 1), 
+(1, 2, 1); 
