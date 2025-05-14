@@ -26,8 +26,7 @@ public class Base implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Immutable
-    @Column(name = "created_at", updatable = false)
+    @Immutable //esto hace que -NO- se pueda modificar una vez se crea
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")

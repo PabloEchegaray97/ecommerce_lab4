@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +33,14 @@ public class UsersAdress implements Serializable {
     @Id
     @Column(name = "idAdress")
     private Integer idAdress;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "idAdress", referencedColumnName = "id", insertable = false, updatable = false)
+    private Adress adress;
 }
 
 /*
