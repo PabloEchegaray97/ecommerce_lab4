@@ -74,4 +74,14 @@ public class ProductDiscountService {
             throw new Exception(e.getMessage());
         }
     }
+
+    @Transactional
+    public List<ProductDiscount> findByIdProduct(Integer idProduct) throws Exception {
+        try {
+            return productDiscountRepository.findByIdProduct(idProduct);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
 } 

@@ -63,4 +63,13 @@ public class ProductDiscountController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
+
+    @GetMapping("/byProduct/{idProduct}")
+    public ResponseEntity<?> getByProduct(@PathVariable Integer idProduct) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productDiscountService.findByIdProduct(idProduct));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
 } 
