@@ -27,15 +27,24 @@ public class Adress extends Base  {
     
     @Column(name = "town")
     private String town;
+
+    @Column(name = "state")
+    private String state;
     
     @Column(name = "cpi")
     private String cpi;
+
+    @Column(name = "country")
+    private String country;
+
 }
 
 /*
 {
+    "cpi": "1234",
     "street": "Calle Falsa 123",
     "town": "Springfield",
-    "cpi": "1234"
+    "state": "Mendoza",
+    "country": "Argentina"
 }
 */ 

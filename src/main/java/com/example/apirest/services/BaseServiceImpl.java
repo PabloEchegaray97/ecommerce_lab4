@@ -1,6 +1,7 @@
 package com.example.apirest.services;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,10 +63,12 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         try {
             Optional<E> entityOptional = baseRepository.findById(id);
             if (!entityOptional.isPresent()) {
-                throw new Exception("No se encontró el recurso con id: " + id);
+                throw new Exception("No se encontró el producto con id: " + id);
             }
             E entityToUpdate = entityOptional.get();
-            BeanUtils.copyProperties(entity, entityToUpdate, "id");
+            LocalDateTime createdAt = entityToUpdate.getCreatedAt();
+            BeanUtils.copyProperties(entity, entityToUpdate, "id", "createdAt");
+            entityToUpdate.setCreatedAt(createdAt);
             return baseRepository.save(entityToUpdate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
