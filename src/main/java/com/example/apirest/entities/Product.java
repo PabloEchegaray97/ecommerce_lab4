@@ -2,20 +2,13 @@ package com.example.apirest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.sql.Date;
-
 import org.hibernate.envers.Audited;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "products")
@@ -24,12 +17,8 @@ import jakarta.persistence.GenerationType;
 @Getter
 @Setter
 @Audited
-public class Product implements Serializable {
+public class Product extends Base  {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @Column(name = "name")
     private String name;
 
@@ -54,11 +43,6 @@ public class Product implements Serializable {
     @Column(name = "status")
     private boolean status;
 
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "updated_at")
-    private Date updatedAt;
 }
 
 
@@ -71,8 +55,6 @@ public class Product implements Serializable {
     "categoryId": 1,
     "colour": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.
     "brand": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.
-    "status": true,
-    "createdAt": "2024-03-20T10:00:00",
-    "updatedAt": "2024-03-20T10:00:00"
+    "status": true
 }
 */
