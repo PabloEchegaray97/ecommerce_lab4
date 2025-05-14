@@ -54,9 +54,7 @@ public class UsersAdressService {
                 throw new Exception("No se encontró el registro con id: " + id);
             }
             UsersAdress usersAdress = entityOptional.get();
-            // En este caso no copiamos idUser e idAdress ya que son las claves primarias
-            // y no hay otros campos para actualizar
-            // Si se agregan campos adicionales en el futuro, se pueden copiar aquí
+            BeanUtils.copyProperties(entity, usersAdress, "idUser", "idAdress");    
             return usersAdress;
         } catch (Exception e) {
             throw new Exception(e.getMessage());

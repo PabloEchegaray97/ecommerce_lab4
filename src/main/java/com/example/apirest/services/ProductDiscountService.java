@@ -54,9 +54,7 @@ public class ProductDiscountService {
                 throw new Exception("No se encontró el registro con id: " + id);
             }
             ProductDiscount productDiscount = entityOptional.get();
-            // En este caso no copiamos idDiscount e idProduct ya que son las claves primarias
-            // y no hay otros campos para actualizar
-            // Si se agregan campos adicionales en el futuro, se pueden copiar aquí
+            BeanUtils.copyProperties(entity, productDiscount, "idDiscount", "idProduct");
             return productDiscount;
         } catch (Exception e) {
             throw new Exception(e.getMessage());

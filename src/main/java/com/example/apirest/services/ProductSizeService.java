@@ -54,9 +54,7 @@ public class ProductSizeService {
                 throw new Exception("No se encontró el registro con id: " + id);
             }
             ProductSize productSize = entityOptional.get();
-            // En este caso no copiamos idSize e idProduct ya que son las claves primarias
-            // y no hay otros campos para actualizar
-            // Si se agregan campos adicionales en el futuro, se pueden copiar aquí
+            BeanUtils.copyProperties(entity, productSize, "idSize", "idProduct");
             return productSize;
         } catch (Exception e) {
             throw new Exception(e.getMessage());

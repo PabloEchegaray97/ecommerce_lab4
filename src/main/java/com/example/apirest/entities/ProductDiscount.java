@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +33,14 @@ public class ProductDiscount implements Serializable {
     @Id
     @Column(name = "idProduct")
     private Integer idProduct;
+    
+    @ManyToOne
+    @JoinColumn(name = "idDiscount", referencedColumnName = "id", insertable = false, updatable = false)
+    private Discount discount;
+    
+    @ManyToOne
+    @JoinColumn(name = "idProduct", referencedColumnName = "id", insertable = false, updatable = false)
+    private Product product;
 }
 
 /*
