@@ -26,8 +26,8 @@ public class Size extends Base  {
     private String number;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "system")
-    private SystemType system; //// EU, US, UK, CM, etc.
+    @Column(name = "systemType")
+    private SystemType systemType; //// EU, US, UK, CM, etc.
 
     public enum SystemType {
         EU, US, UK, CM
