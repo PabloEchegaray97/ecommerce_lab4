@@ -24,7 +24,7 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         try {
             List<E> entities = baseRepository.findAll();
             if (entities.isEmpty()) {
-                throw new Exception("No se encontraron productos");
+                throw new Exception("No se encontró el recurso solicitado");
             }
             return entities;
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         try {
             Optional<E> entityOptional = baseRepository.findById(id);
             if (!entityOptional.isPresent()) {
-                throw new Exception("No se encontró el producto con id: " + id);
+                throw new Exception("No se encontró el recurso con id: " + id);
             }
             return entityOptional.get();
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         try {
             Optional<E> entityOptional = baseRepository.findById(id);
             if (!entityOptional.isPresent()) {
-                throw new Exception("No se encontró el producto con id: " + id);
+                throw new Exception("No se encontró el recurso con id: " + id);
             }
             E entityToUpdate = entityOptional.get();
             BeanUtils.copyProperties(entity, entityToUpdate, "id");
@@ -80,7 +80,7 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
                 baseRepository.deleteById(id);
                 return true;
             } else {
-                throw new Exception("No se encontró el producto con id: " + id);
+                throw new Exception("No se encontró el recurso con id: " + id);
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
