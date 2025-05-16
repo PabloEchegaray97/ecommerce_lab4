@@ -2,6 +2,8 @@ package com.example.apirest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,13 +22,12 @@ import org.hibernate.envers.Audited;
 @Setter
 @Audited
 public class PurchaseOrder extends Base  {
-    
+    //no hace falta fecha porque ya esta en base
+    @Column(name = "idUser")
+    private Integer idUser;
 
-    @Column(name = "idUserAdress")
+    @Column(name = "idUserAdress") //esta porque puede tener varias direcciones
     private Integer idUserAdress;
-    
-    @Column(name = "date")
-    private Date date;
     
     @Column(name = "total")
     private Double total;
@@ -36,7 +37,16 @@ public class PurchaseOrder extends Base  {
     
     @Column(name = "status")
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "idUserAdress", referencedColumnName = "id", insertable = false, updatable = false)
+    private UsersAdress usersAdress;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
 }
+
 
 /*
 {

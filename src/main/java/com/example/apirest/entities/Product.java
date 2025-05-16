@@ -2,6 +2,8 @@ package com.example.apirest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +44,10 @@ public class Product extends Base  {
 
     @Column(name = "status")
     private boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "id", insertable = false, updatable = false)
+    private Category category;
 
 }
 
