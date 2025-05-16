@@ -1,5 +1,7 @@
 package com.example.apirest.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.apirest.entities.Product;
@@ -7,7 +9,7 @@ import com.example.apirest.repositories.BaseRepository;
 import com.example.apirest.repositories.ProductRepository;
 
 @Service
-public class ProductServiceImp extends BaseServiceImpl<Product, Integer>{
+public class ProductServiceImp extends BaseServiceImpl<Product, Integer> implements ProductService{
 
     @Autowired
     private ProductRepository productRepository;
@@ -16,5 +18,12 @@ public class ProductServiceImp extends BaseServiceImpl<Product, Integer>{
         super(baseRepository);
     }
 
-    
+    @Override
+    public List<Product> search(String filtro) throws Exception {
+        try {
+            return productRepository.search(filtro);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

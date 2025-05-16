@@ -2,7 +2,12 @@ package com.example.apirest.controllers;
 
 import com.example.apirest.entities.Product;
 import com.example.apirest.services.ProductServiceImp;
+
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,4 +21,14 @@ public class ProductController extends BaseController<Product, Integer> {
     public ProductController(ProductServiceImp productServiceImp) {
         super(productServiceImp);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam String filtro) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productServiceImp.search(filtro));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
+        }
+    }
+    
 }   
