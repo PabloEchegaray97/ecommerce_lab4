@@ -2,6 +2,8 @@ package com.example.apirest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -9,8 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.sql.Date;
 
 import org.hibernate.envers.Audited;
 
@@ -35,8 +35,15 @@ public class PurchaseOrder extends Base  {
     @Column(name = "paymentMethod")
     private String paymentMethod;
     
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private Status status;
+
+    public enum Status {
+        PENDING,
+        PAID,
+        CANCELLED
+    }
 
     @ManyToOne
     @JoinColumn(name = "idUserAdress", referencedColumnName = "id", insertable = false, updatable = false)
@@ -50,8 +57,8 @@ public class PurchaseOrder extends Base  {
 
 /*
 {
+    "idUser": 1,
     "idUserAdress": 1,
-    "date": "2024-03-20",
     "total": 259.98,
     "paymentMethod": "Tarjeta",
     "status": "PAGADO"
