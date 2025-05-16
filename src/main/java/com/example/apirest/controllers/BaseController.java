@@ -3,6 +3,7 @@ package com.example.apirest.controllers;
 import com.example.apirest.entities.Base;
 import com.example.apirest.services.BaseService;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,15 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
     public ResponseEntity<?> getAll() throws Exception {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/paged")
+    public ResponseEntity<?> getAll(Pageable pageable) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAll(pageable));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
         }

@@ -1,9 +1,10 @@
 package com.example.apirest.services;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.apirest.entities.Product;
 
 public interface ProductService extends BaseService<Product, Integer> {
-    List<Product> search(String filtro) throws Exception;
+    Page<Product> search(String filtro, Pageable pageable) throws Exception;
 }

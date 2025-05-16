@@ -1,7 +1,7 @@
 package com.example.apirest.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.apirest.entities.Product;
@@ -19,9 +19,9 @@ public class ProductServiceImp extends BaseServiceImpl<Product, Integer> impleme
     }
 
     @Override
-    public List<Product> search(String filtro) throws Exception {
+    public Page<Product> search(String filtro, Pageable pageable) throws Exception {
         try {
-            return productRepository.search(filtro);
+            return productRepository.search(filtro, pageable);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
