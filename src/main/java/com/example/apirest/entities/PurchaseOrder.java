@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,16 +24,16 @@ import org.hibernate.envers.Audited;
 @Audited
 public class PurchaseOrder extends Base  {
     //no hace falta fecha porque ya esta en base
-    @Column(name = "idUser")
-    private Integer idUser;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @Column(name = "idUserAdress") //esta porque puede tener varias direcciones
-    private Integer idUserAdress;
+    @Column(name = "user_address_id") 
+    private Integer userAddressId;
     
     @Column(name = "total")
     private Double total;
     
-    @Column(name = "paymentMethod")
+    @Column(name = "payment_method")
     private String paymentMethod;
     
     @Enumerated(EnumType.STRING)
@@ -46,21 +47,24 @@ public class PurchaseOrder extends Base  {
     }
 
     @ManyToOne
-    @JoinColumn(name = "idUserAdress", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumns({
+        @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false),
+        @JoinColumn(name = "user_address_id", referencedColumnName = "address_id", insertable = false, updatable = false)
+    })
     private UsersAdress usersAdress;
 
     @ManyToOne
-    @JoinColumn(name = "idUser", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 }
 
 
 /*
 {
-    "idUser": 1,
-    "idUserAdress": 1,
+    "userId": 1,
+    "userAddressId": 1,
     "total": 259.98,
     "paymentMethod": "Tarjeta",
-    "status": "PAGADO"
+    "status": "PENDING"
 }
 */ 

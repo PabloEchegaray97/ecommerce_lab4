@@ -46,7 +46,7 @@ public class Product extends Base  {
     private boolean status;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
 
 }

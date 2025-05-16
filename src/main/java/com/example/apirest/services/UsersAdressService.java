@@ -37,6 +37,15 @@ public class UsersAdressService {
     }
     
     @Transactional
+    public List<UsersAdress> findByUserId(Integer userId) throws Exception {
+        try {
+            return usersAdressRepository.findByUserId(userId);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+    
+    @Transactional
     public UsersAdress save(UsersAdress entity) throws Exception {
         try {
             entity = usersAdressRepository.save(entity);
@@ -54,7 +63,7 @@ public class UsersAdressService {
                 throw new Exception("No se encontró el registro con id: " + id);
             }
             UsersAdress usersAdress = entityOptional.get();
-            BeanUtils.copyProperties(entity, usersAdress, "idUser", "idAdress");    
+            BeanUtils.copyProperties(entity, usersAdress, "userId", "addressId");    
             return usersAdress;
         } catch (Exception e) {
             throw new Exception(e.getMessage());

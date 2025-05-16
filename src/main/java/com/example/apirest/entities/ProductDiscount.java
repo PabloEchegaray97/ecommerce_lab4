@@ -27,19 +27,19 @@ import org.hibernate.envers.Audited;
 public class ProductDiscount implements Serializable {
     
     @Id
-    @Column(name = "idDiscount")
+    @Column(name = "id_discount")
     private Integer idDiscount;
 
     @Id
-    @Column(name = "idProduct")
+    @Column(name = "id_product")
     private Integer idProduct;
     
     @ManyToOne
-    @JoinColumn(name = "idDiscount", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_discount", referencedColumnName = "id", insertable = false, updatable = false)
     private Discount discount;
     
     @ManyToOne
-    @JoinColumn(name = "idProduct", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_product", referencedColumnName = "id", insertable = false, updatable = false)
     private Product product;
 }
 

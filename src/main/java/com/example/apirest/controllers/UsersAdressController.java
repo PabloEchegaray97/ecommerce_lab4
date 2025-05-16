@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "api/v1/users-addresses")
+@RequestMapping(path = "api/v1/user-addresses")
 public class UsersAdressController {
 
     @Autowired
@@ -25,11 +25,20 @@ public class UsersAdressController {
         }
     }
 
-    @GetMapping("/{idUser}/{idAdress}")
-    public ResponseEntity<?> getOne(@PathVariable Integer idUser, @PathVariable Integer idAdress) {
+    @GetMapping("/{userId}/{addressId}")
+    public ResponseEntity<?> getOne(@PathVariable Integer userId, @PathVariable Integer addressId) {
         try {
-            UsersAdressId id = new UsersAdressId(idUser, idAdress);
+            UsersAdressId id = new UsersAdressId(userId, addressId);
             return ResponseEntity.status(HttpStatus.OK).body(usersAdressService.findById(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+    
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<?> getByUserId(@PathVariable Integer userId) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(usersAdressService.findByUserId(userId));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
@@ -44,20 +53,20 @@ public class UsersAdressController {
         }
     }
 
-    @PutMapping("/{idUser}/{idAdress}")
-    public ResponseEntity<?> update(@PathVariable Integer idUser, @PathVariable Integer idAdress, @RequestBody UsersAdress entity) {
+    @PutMapping("/{userId}/{addressId}")
+    public ResponseEntity<?> update(@PathVariable Integer userId, @PathVariable Integer addressId, @RequestBody UsersAdress entity) {
         try {
-            UsersAdressId id = new UsersAdressId(idUser, idAdress);
+            UsersAdressId id = new UsersAdressId(userId, addressId);
             return ResponseEntity.status(HttpStatus.OK).body(usersAdressService.update(id, entity));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
 
-    @DeleteMapping("/{idUser}/{idAdress}")
-    public ResponseEntity<?> delete(@PathVariable Integer idUser, @PathVariable Integer idAdress) {
+    @DeleteMapping("/{userId}/{addressId}")
+    public ResponseEntity<?> delete(@PathVariable Integer userId, @PathVariable Integer addressId) {
         try {
-            UsersAdressId id = new UsersAdressId(idUser, idAdress);
+            UsersAdressId id = new UsersAdressId(userId, addressId);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(usersAdressService.delete(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");

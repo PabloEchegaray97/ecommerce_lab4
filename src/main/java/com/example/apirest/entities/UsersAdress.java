@@ -17,7 +17,7 @@ import java.io.Serializable;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Table(name = "users_adress")
+@Table(name = "user_addresses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -27,25 +27,25 @@ import org.hibernate.envers.Audited;
 public class UsersAdress implements Serializable {
     
     @Id
-    @Column(name = "idUser")
-    private Integer idUser;
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Id
-    @Column(name = "idAdress")
-    private Integer idAdress;
+    @Column(name = "address_id")
+    private Integer addressId;
 
     @ManyToOne
-    @JoinColumn(name = "idUser", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "idAdress", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Adress adress;
 }
 
 /*
 {
-    "idUser": 1,
-    "idAdress": 1
+    "userId": 1,
+    "addressId": 1
 }
 */ 

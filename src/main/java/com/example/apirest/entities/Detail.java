@@ -27,18 +27,18 @@ public class Detail extends Base  {
     @Column(name = "quantity")
     private Integer quantity;
     
-    @Column(name = "productId")
+    @Column(name = "product_id")
     private Integer productId;
     
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "productId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
     private PurchaseOrder purchaseOrder;
 }
 

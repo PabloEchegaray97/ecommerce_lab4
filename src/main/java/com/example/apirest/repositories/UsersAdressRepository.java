@@ -12,12 +12,12 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(path = "usersAddresses")
+@RepositoryRestResource(path = "userAddresses")
 public interface UsersAdressRepository extends JpaRepository<UsersAdress, UsersAdressId> {
     
     @RestResource(path = "byUser")
-    List<UsersAdress> findByIdUser(@Param("idUser") Integer idUser);
+    List<UsersAdress> findByUserId(@Param("userId") Integer userId);
     
     @RestResource(path = "byAdress")
-    List<UsersAdress> findByIdAdress(@Param("idAdress") Integer idAdress);
+    List<UsersAdress> findByAddressId(@Param("addressId") Integer addressId);
 } 

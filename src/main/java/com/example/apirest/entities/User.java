@@ -13,7 +13,7 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

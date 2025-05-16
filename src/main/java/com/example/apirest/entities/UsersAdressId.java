@@ -2,33 +2,18 @@ package com.example.apirest.entities;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsersAdressId implements Serializable {
-    private Integer idUser;
-    private Integer idAdress;
-    
-    public UsersAdressId() {}
-    
-    public UsersAdressId(Integer idUser, Integer idAdress) {
-        this.idUser = idUser;
-        this.idAdress = idAdress;
-    }
-    
-    // Getters and Setters
-    public Integer getIdUser() {
-        return idUser;
-    }
-    
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
-    }
-    
-    public Integer getIdAdress() {
-        return idAdress;
-    }
-    
-    public void setIdAdress(Integer idAdress) {
-        this.idAdress = idAdress;
-    }
+    private Integer userId;
+    private Integer addressId;
     
     // Equals and hashCode methods
     @Override
@@ -38,14 +23,14 @@ public class UsersAdressId implements Serializable {
         
         UsersAdressId that = (UsersAdressId) o;
         
-        if (!idUser.equals(that.idUser)) return false;
-        return idAdress.equals(that.idAdress);
+        if (!userId.equals(that.userId)) return false;
+        return addressId.equals(that.addressId);
     }
     
     @Override
     public int hashCode() {
-        int result = idUser.hashCode();
-        result = 31 * result + idAdress.hashCode();
+        int result = userId.hashCode();
+        result = 31 * result + addressId.hashCode();
         return result;
     }
 } 

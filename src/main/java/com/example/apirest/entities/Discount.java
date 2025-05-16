@@ -21,13 +21,13 @@ import org.hibernate.envers.Audited;
 @Audited
 public class Discount extends Base  {
 
-    @Column(name = "startDate")
+    @Column(name = "start_date")
     private Date startDate;
     
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     private Date endDate;
     
-    @Column(name = "discountPercentage")
+    @Column(name = "discount_percentage")
     private Integer discountPercentage;
 }
 

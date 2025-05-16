@@ -13,7 +13,7 @@ import org.hibernate.envers.Audited;
 
 
 @Entity
-@Table(name = "Adress")
+@Table(name = "addresses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

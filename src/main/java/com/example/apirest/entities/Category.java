@@ -26,11 +26,11 @@ public class Category extends Base  {
     @Column(name = "name")
     private String name;
     
-    @Column(name = "typeId")
+    @Column(name = "type_id")
     private Integer typeId;
 
     @ManyToOne
-    @JoinColumn(name = "typeId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "type_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Type type;
 }
 

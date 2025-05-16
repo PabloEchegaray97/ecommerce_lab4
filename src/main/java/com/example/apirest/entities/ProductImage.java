@@ -25,14 +25,14 @@ public class ProductImage extends Base  {
     @Column(name = "link")
     private String link;
     
-    @Column(name = "productId")
+    @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name= "isPrincipalProductImage") //por defecto es false, osea que si se agregan imagenes al producto solo se debe determinar cual es la principal, sino, dejar vacío
+    @Column(name= "is_principal_product_image") //por defecto es false, osea que si se agregan imagenes al producto solo se debe determinar cual es la principal, sino, dejar vacío
     private boolean isPrincipalProductImage;
 
     @ManyToOne
-    @JoinColumn(name= "productId", referencedColumnName = "id", insertable=false, updatable =false)
+    @JoinColumn(name= "product_id", referencedColumnName = "id", insertable=false, updatable =false)
     private Product product;
 }
 
