@@ -1,0 +1,903 @@
+{
+	"info": {
+		"_postman_id": "40762c03-ba80-4c39-b769-1be452577917",
+		"name": "ecommerce lab4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26413084"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Categorias de productos",
+					"item": [
+						{
+							"name": "Tipo de categorias",
+							"item": [
+								{
+									"name": "Crear tipo",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Para correr en la playa jij\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:9000/api/v1/types"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Crear categoria",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Walking\",\n    \"typeId\":2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/categories"
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener categorias",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Walking\",\n    \"typeId\":2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/categories"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Max\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"https://ejemplo.com/nike-air-max.jpg\",\n    \"categoryId\": 1,\n    \"colour\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brand\": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    \"status\": true,\n    \"createdAt\": \"2024-03-20T10:00:00\",\n    \"updatedAt\": \"2024-03-20T10:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Max\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"hola\",\n    \"categoryId\": 1,\n    \"colour\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brand\": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    \"status\": true,\n    \"createdAt\": \"2024-03-20T10:00:00\",\n    \"updatedAt\": \"2024-03-20T10:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air MaxX\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar producto (variable filtro)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Max\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"hola\",\n    \"categoryId\": 1,\n    \"colour\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brand\": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    \"status\": true,\n    \"createdAt\": \"2024-03-20T10:00:00\",\n    \"updatedAt\": \"2024-03-20T10:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/products/search?filtro=zapatillas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": "zapatillas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Max\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"https://ejemplo.com/nike-air-max.jpg\",\n    \"categoryId\": 2,\n    \"colour\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brand\": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar un producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Max\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"https://ejemplo.com/nike-air-max.jpg\",\n    \"categoryId\": 2,\n    \"colour\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brand\": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Descuentos",
+			"item": [
+				{
+					"name": "Agregar descuento a producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idDiscount\":4,\n    \"idProduct\":4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/product-discounts"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nuevo descuento",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2025-04-25\",\n    \"endDate\": \"2025-05-29\",\n    \"discountPercentage\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/discounts"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener descuentos de productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idDiscount\":1,\n    \"idProduct\":3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/product-discounts/byProduct/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener descuentos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2025-04-25\",\n    \"endDate\": \"2025-05-29\",\n    \"discountPercentage\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/discounts"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Imagenes de productos",
+			"item": [
+				{
+					"name": "Obtener todas las imagenes de products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\": \"https://ejemplo.com/nike.jpg\",\n    \"productId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/product-images/"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una imagen para un producto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\": \"https://ejemplo.com/nike.jpg\",\n    \"productId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/product-images"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una imagen para un producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\": \"https://ejemplo.com/nike.jpg\",\n    \"productId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/product-images/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Direcciones de usuarios",
+					"item": [
+						{
+							"name": "Obtener todas las direcciones",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"street\": \"Calle Falsa 123\",\n        \"town\": \"Springfield -\",\n        \"cpi\": \"1234\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/users-addresses"
+							},
+							"response": []
+						},
+						{
+							"name": "Agregar direccion a usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"addressId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/user-addresses"
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener todas las direcciones de un usuario",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"street\": \"Calle Falsa 123\",\n        \"town\": \"Springfield -\",\n        \"cpi\": \"1234\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/user-addresses/byUser/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Direcciones",
+					"item": [
+						{
+							"name": "Obtener todas las direcciones registradas",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Deportivo\"\n}"
+								},
+								"url": "http://localhost:9000/api/v1/addresses"
+							},
+							"response": []
+						},
+						{
+							"name": "Crear una nueva direccion",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cpi\": \"1234\",\n    \"street\": \"Calle Falsa 123\",\n    \"town\": \"Springfield\",\n    \"state\": \"Mendoza\",\n    \"country\": \"Argentina\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/addresses"
+							},
+							"response": []
+						},
+						{
+							"name": "Modificar una dirección",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"street\": \"Calle Falsa 123\",\n        \"town\": \"Springfield -\",\n        \"cpi\": \"1234\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/addresses/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Obtener todos los usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9000/api/v1/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un cliente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Juan Perez\",\n    \"email\": \"juan@mail.com\",\n    \"password\": \"1234\",\n    \"role\": \"CLIENT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un ADMIN",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Juan Perez\",\n    \"email\": \"juan1@mail.com\",\n    \"password\": \"1234\",\n    \"role\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ordenes de compra",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener ordenes de compra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\": \"https://ejemplo.com/nike.jpg\",\n    \"productId\": 3\n}"
+						},
+						"url": "http://localhost:9000/api/v1/purchase-orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear orden de compra",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"userAddressId\": 1,\n    \"total\": 1000,\n    \"paymentMethod\": \"Tarjeta\",\n    \"status\": \"PAID\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/purchase-orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener orden de compra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"link\": \"https://ejemplo.com/nike.jpg\",\n    \"productId\": 3\n}"
+						},
+						"url": "http://localhost:9000/api/v1/purchase-orders/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Detalles de ordenes de compra",
+			"item": [
+				{
+					"name": "Crear detalle de orden de compra",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 2,\n    \"productId\": 3,\n    \"orderId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/details"
+					},
+					"response": []
+				},
+				{
+					"name": "obtener detalles de compra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 2,\n    \"productId\": 3,\n    \"orderId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/details"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipos y tamaños de talles",
+			"item": [
+				{
+					"name": "Talles",
+					"item": [
+						{
+							"name": "Obtener todos los talles",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Juan Perez\",\n    \"email\": \"juan1@mail.com\",\n    \"password\": \"1234\",\n    \"role\": \"ADMIN\"\n}"
+								},
+								"url": "http://localhost:9000/api/v1/sizes"
+							},
+							"response": []
+						},
+						{
+							"name": "Crear un talle",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"number\": \"39\",\n    \"systemType\":\"US\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/sizes"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipos (deportivos, urbano, etc)",
+					"item": [
+						{
+							"name": "Crear un tipo",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Deportivo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/types"
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener tipos",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Deportivo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/types"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Direcciones",
+			"item": [
+				{
+					"name": "Crear una direccion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idUser\": 3,\n    \"idAdress\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/addresses"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener direcciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idUser\": 3,\n    \"idAdress\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/addresses"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una direccion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idUser\": 3,\n    \"idAdress\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/addresses/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
