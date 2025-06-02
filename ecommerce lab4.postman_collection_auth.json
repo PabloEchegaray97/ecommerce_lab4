@@ -92,7 +92,10 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -105,7 +108,26 @@
 								}
 							}
 						},
-						"url": "http://localhost:9000/api/v1/products"
+						"url": {
+							"raw": "http://localhost:9000/api/v1/products/search?filtro=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"search"
+							],
+							"query": [
+								{
+									"key": "filtro",
+									"value": ""
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -894,6 +916,80 @@
 							}
 						},
 						"url": "http://localhost:9000/api/v1/addresses/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"u2\",\n    \"password\":\"1234\"\n}"
+						},
+						"url": "http://localhost:9000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "demo auth html",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MiIsImlhdCI6MTc0NzgxNDMyOCwiZXhwIjoxNzQ3ODE1NzY4fQ.8L_LE8IATGOk5RdPim1bG9t__NtHnD8Y1t33iT5ZJOI"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": "http://localhost:9000/api/v1/demo/demo"
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Juan Perez\",\n    \"lastName\": \"Perez\",\n    \"username\": \"u2\",\n    \"email\": \"u2@u2.com\",\n    \"password\": \"1234\"\n}"
+						},
+						"url": "http://localhost:9000/auth/register"
 					},
 					"response": []
 				}
