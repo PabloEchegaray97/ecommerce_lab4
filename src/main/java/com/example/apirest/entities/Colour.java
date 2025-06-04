@@ -2,7 +2,6 @@ package com.example.apirest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import org.hibernate.envers.Audited;
-import java.util.List;
-
 
 
 @Entity
@@ -23,7 +20,7 @@ import java.util.List;
 @Audited
 public class Colour extends Base  {
     
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     @Column(name = "value")

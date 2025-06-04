@@ -31,6 +31,12 @@ public class Base implements Serializable {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
     
     @PrePersist
     public void prePersist() {

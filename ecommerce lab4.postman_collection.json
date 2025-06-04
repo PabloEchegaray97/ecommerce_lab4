@@ -86,6 +86,79 @@
 					]
 				},
 				{
+					"name": "Colores",
+					"item": [
+						{
+							"name": "obtener colores",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:9000/api/v1/colours"
+							},
+							"response": []
+						},
+						{
+							"name": "crear colores",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"name\": \"Negro\",\n        \"value\": \"#000000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/colours"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Marcas",
+					"item": [
+						{
+							"name": "crear marca",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Nike\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/brands"
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Obtener productos",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -108,26 +181,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:9000/api/v1/products/search?filtro=",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "9000",
-							"path": [
-								"api",
-								"v1",
-								"products",
-								"search"
-							],
-							"query": [
-								{
-									"key": "filtro",
-									"value": ""
-								}
-							]
-						}
+						"url": "http://localhost:9000/api/v1/products"
 					},
 					"response": []
 				},
@@ -573,6 +627,80 @@
 					]
 				},
 				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"u2\",\n    \"password\":\"1234\"\n}"
+								},
+								"url": "http://localhost:9000/auth/login"
+							},
+							"response": []
+						},
+						{
+							"name": "demo auth html",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MiIsImlhdCI6MTc0NzgxNDMyOCwiZXhwIjoxNzQ3ODE1NzY4fQ.8L_LE8IATGOk5RdPim1bG9t__NtHnD8Y1t33iT5ZJOI"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n}"
+								},
+								"url": "http://localhost:9000/api/v1/demo/demo"
+							},
+							"response": []
+						},
+						{
+							"name": "register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Juan Perez\",\n    \"lastName\": \"Perez\",\n    \"username\": \"u2\",\n    \"email\": \"u2@u2.com\",\n    \"password\": \"1234\"\n}"
+								},
+								"url": "http://localhost:9000/auth/register"
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Obtener todos los usuarios",
 					"request": {
 						"method": "GET",
@@ -916,80 +1044,6 @@
 							}
 						},
 						"url": "http://localhost:9000/api/v1/addresses/1"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "auth",
-			"item": [
-				{
-					"name": "login",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\":\"u2\",\n    \"password\":\"1234\"\n}"
-						},
-						"url": "http://localhost:9000/auth/login"
-					},
-					"response": []
-				},
-				{
-					"name": "demo auth html",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1MiIsImlhdCI6MTc0NzgxNDMyOCwiZXhwIjoxNzQ3ODE1NzY4fQ.8L_LE8IATGOk5RdPim1bG9t__NtHnD8Y1t33iT5ZJOI"
-							}
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\n}"
-						},
-						"url": "http://localhost:9000/api/v1/demo/demo"
-					},
-					"response": []
-				},
-				{
-					"name": "register",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Juan Perez\",\n    \"lastName\": \"Perez\",\n    \"username\": \"u2\",\n    \"email\": \"u2@u2.com\",\n    \"password\": \"1234\"\n}"
-						},
-						"url": "http://localhost:9000/auth/register"
 					},
 					"response": []
 				}
