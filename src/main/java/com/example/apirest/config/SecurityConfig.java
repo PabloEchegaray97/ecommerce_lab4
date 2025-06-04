@@ -28,7 +28,7 @@ public class SecurityConfig {
             .authorizeHttpRequests( authRequest ->
                 authRequest
                     .requestMatchers("/auth/**").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll() //authenticated() para que pida token en todas
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authProvider)

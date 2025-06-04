@@ -36,11 +36,11 @@ public class Product extends Base  {
     @Column(name = "category_id")
     private Integer categoryId;
 
-    @Column(name = "colour")
-    private short colour;
+    @Column(name = "colour_id")
+    private Integer colourId;
 
-    @Column(name = "brand")
-    private short brand;
+    @Column(name = "brand_id")
+    private Integer brandId;
 
     @Column(name = "status")
     private boolean status;
@@ -48,6 +48,14 @@ public class Product extends Base  {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "colour_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Colour colour;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Brand brand;
 
 }
 
@@ -59,8 +67,8 @@ public class Product extends Base  {
     "description": "Zapatillas deportivas Nike Air Max con tecnología de amortiguación",
     "image": "https://ejemplo.com/nike-air-max.jpg",
     "categoryId": 1,
-    "colour": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.
-    "brand": 1,   // 1: Nike, 2: Adidas, 3: Puma, etc.
+    "colourId": 1,  // ID del color
+    "brandId": 1,   // ID de la marca
     "status": true
 }
 */
