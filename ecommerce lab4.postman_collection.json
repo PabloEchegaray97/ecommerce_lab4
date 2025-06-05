@@ -35,6 +35,27 @@
 										"url": "http://localhost:9000/api/v1/types"
 									},
 									"response": []
+								},
+								{
+									"name": "crear tipos de categorias (x10)",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:9000/api/v1/types/bulk"
+									},
+									"response": []
 								}
 							]
 						},
@@ -82,6 +103,27 @@
 								"url": "http://localhost:9000/api/v1/categories"
 							},
 							"response": []
+						},
+						{
+							"name": "Crear categorias (x10)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Walking\",\n    \"typeId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/categories/bulk"
+							},
+							"response": []
 						}
 					]
 				},
@@ -126,6 +168,27 @@
 								"url": "http://localhost:9000/api/v1/colours"
 							},
 							"response": []
+						},
+						{
+							"name": "crear colores (x10)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/colours/bulk"
+							},
+							"response": []
 						}
 					]
 				},
@@ -153,6 +216,27 @@
 									}
 								},
 								"url": "http://localhost:9000/api/v1/brands"
+							},
+							"response": []
+						},
+						{
+							"name": "crear marcas (x10)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:9000/api/v1/brands/bulk"
 							},
 							"response": []
 						}
@@ -312,6 +396,27 @@
 							}
 						},
 						"url": "http://localhost:9000/api/v1/products/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Productos (x10)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Zapatillas Nike Air Maxsadsadadss\",\n    \"price\": 129.99,\n    \"description\": \"Zapatillas deportivas Nike Air Max con tecnología de amortiguación\",\n    \"image\": \"https://ejemplo.com/nike-air-max.jpg\",\n    \"categoryId\": 2,\n    \"colourId\": 1,  // 1: Negro, 2: Blanco, 3: Rojo, etc.\n    \"brandId\": 1   // 1: Nike, 2: Adidas, 3: Puma, etc.\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9000/api/v1/products/bulk"
 					},
 					"response": []
 				}
