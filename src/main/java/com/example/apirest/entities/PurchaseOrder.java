@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import org.hibernate.envers.Audited;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.List;
 
 @Entity
 @Table(name = "purchase_order")
@@ -56,6 +60,10 @@ public class PurchaseOrder extends Base  {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
+    
+    @OneToMany(mappedBy = "purchaseOrder")
+    @JsonManagedReference
+    private List<Detail> details;
 }
 
 

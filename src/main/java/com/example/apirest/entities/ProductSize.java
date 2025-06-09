@@ -15,6 +15,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 import org.hibernate.envers.Audited;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "product_size")
@@ -33,6 +34,9 @@ public class ProductSize implements Serializable {
     @Id
     @Column(name = "id_product")
     private Integer idProduct;
+    
+    @Column(name = "stock")
+    private Integer stock;
 
     @ManyToOne
     @JoinColumn(name = "id_size", referencedColumnName = "id", insertable = false, updatable = false)
@@ -40,12 +44,14 @@ public class ProductSize implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_product", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonBackReference
     private Product product;
 }
 
 /*
 {
     "idSize": 1,
-    "idProduct": 1
+    "idProduct": 1,
+    "stock": 50
 }
 */ 
