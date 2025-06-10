@@ -86,16 +86,16 @@ public class DataInitializer implements CommandLineRunner {
         
         String[][] colourData = {
             {"Negro", "#000000"},
-            {"Blanco", "#FFFFFF"},
-            {"Rojo", "#FF0000"},
+            {"Marron", "#8B4513"},
             {"Azul", "#0000FF"},
-            {"Verde", "#00FF00"},
-            {"Amarillo", "#FFFF00"},
-            {"Rosa", "#FF69B4"},
-            {"Naranja", "#FFA500"},
-            {"Morado", "#800080"},
-            {"Gris", "#808080"}
-        };
+            {"Gris", "#808080"},
+            {"Crema", "#F5F5F5"},
+            {"Rosa", "#FFC0CB"},
+            {"Blanco", "#FFFFFF"},
+            {"Violeta", "#800080"}, // 8
+            {"Morado", "#800080"}, // 9
+            {"Naranja", "#FFA500"} // 10
+            };
 
         for (String[] data : colourData) {
             Colour colour = new Colour();
@@ -124,9 +124,9 @@ public class DataInitializer implements CommandLineRunner {
     private void loadTypes() throws Exception {
         System.out.println("Cargando tipos...");
         
+        // Solo un tipo: Zapatillas
         String[] typeNames = {
-            "Deportiva", "Casual", "Running", "Basketball", 
-            "Skateboarding", "Training", "Lifestyle", "Outdoor"
+            "Zapatillas"
         };
 
         for (String name : typeNames) {
@@ -141,15 +141,12 @@ public class DataInitializer implements CommandLineRunner {
     private void loadCategories() throws Exception {
         System.out.println("Cargando categorías...");
         
+        // Las categorías que querías: Classics, Classic +, Skateboarding, Surf
         String[][] categoryData = {
-            {"Zapatillas Deportivas", "1"},
-            {"Zapatillas Casuales", "2"},
-            {"Zapatillas Running", "3"},
-            {"Zapatillas Basketball", "4"},
-            {"Zapatillas Skate", "5"},
-            {"Zapatillas Training", "6"},
-            {"Zapatillas Lifestyle", "7"},
-            {"Zapatillas Outdoor", "8"}
+            {"Classics", "1"},          // ID: 1
+            {"Classic +", "1"},         // ID: 2  
+            {"Skateboarding", "1"},     // ID: 3
+            {"Surf", "1"}               // ID: 4
         };
 
         for (String[] data : categoryData) {
@@ -164,63 +161,108 @@ public class DataInitializer implements CommandLineRunner {
 
     private void loadProducts() throws Exception {
         System.out.println("Cargando productos...");
-        
-        // Basado en productos.sql
+        //{"Nombre", Precio, "Descripción", "URL_Imagen", CategoryID, ColourID, BrandID}
+        // Productos con las categorías que definiste (1-4)
         Object[][] productData = {
-            // U Knu Skool
+            // U Knu Skool - Classics (ID: 1)
+            //negro
             {"U Knu Skool", 189000.0, 
              "La Knu Skool es un modelo reeditado de los años 90, cuando las zapatillas de skate eran extra hinchadas. Confeccionadas con parte superior de ante y lienzo, este modelo de perfil bajo presenta una gran lengüeta hinchada y un cuello en el tobillo, lo que le da un aspecto exagerado que juega con la Old Skool original. Manteniendo la estética \"Off The Wall\", nuestro icónico Vans Sidestripe ™ se ha rediseñado como un molde 3D de diamante hinchado, que se suma a la apariencia y sensación general gruesa. La adición de tiradores en el talón ofrece un fácil acceso para entrar y salir. Contiene tiradores en el talón para facilitar la calzada y suela waffle de goma distintiva.",
-             "http://localhost:9000/api/v1/product-images/files/1.jpg", 5, 1, 1},
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro/1.jpg", 1, 1, 1},
+             //marron
             {"U Knu Skool", 189000.0, 
              "La Knu Skool es un modelo reeditado de los años 90, cuando las zapatillas de skate eran extra hinchadas. Confeccionadas con parte superior de ante y lienzo, este modelo de perfil bajo presenta una gran lengüeta hinchada y un cuello en el tobillo, lo que le da un aspecto exagerado que juega con la Old Skool original. Manteniendo la estética \"Off The Wall\", nuestro icónico Vans Sidestripe ™ se ha rediseñado como un molde 3D de diamante hinchado, que se suma a la apariencia y sensación general gruesa. La adición de tiradores en el talón ofrece un fácil acceso para entrar y salir. Contiene tiradores en el talón para facilitar la calzada y suela waffle de goma distintiva.",
-             "http://localhost:9000/api/v1/product-images/files/2.jpg", 5, 2, 1},
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_marron/1.jpg", 1, 2, 1},
+            //negro negro
             {"U Knu Skool", 189000.0, 
              "La Knu Skool es un modelo reeditado de los años 90, cuando las zapatillas de skate eran extra hinchadas. Confeccionadas con parte superior de ante y lienzo, este modelo de perfil bajo presenta una gran lengüeta hinchada y un cuello en el tobillo, lo que le da un aspecto exagerado que juega con la Old Skool original. Manteniendo la estética \"Off The Wall\", nuestro icónico Vans Sidestripe ™ se ha rediseñado como un molde 3D de diamante hinchado, que se suma a la apariencia y sensación general gruesa. La adición de tiradores en el talón ofrece un fácil acceso para entrar y salir. Contiene tiradores en el talón para facilitar la calzada y suela waffle de goma distintiva.",
-             "http://localhost:9000/api/v1/product-images/files/3.jpg", 5, 10, 1},
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro_negro/1.jpg", 1, 1, 1},
+             //azul
+             {"U Knu Skool", 189000.0, 
+             "La Knu Skool es un modelo reeditado de los años 90, cuando las zapatillas de skate eran extra hinchadas. Confeccionadas con parte superior de ante y lienzo, este modelo de perfil bajo presenta una gran lengüeta hinchada y un cuello en el tobillo, lo que le da un aspecto exagerado que juega con la Old Skool original. Manteniendo la estética \"Off The Wall\", nuestro icónico Vans Sidestripe ™ se ha rediseñado como un molde 3D de diamante hinchado, que se suma a la apariencia y sensación general gruesa. La adición de tiradores en el talón ofrece un fácil acceso para entrar y salir. Contiene tiradores en el talón para facilitar la calzada y suela waffle de goma distintiva.",
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_azul/1.jpg", 1, 3, 1},
+             //gris
+             {"U Knu Skool", 189000.0, 
+             "La Knu Skool es un modelo reeditado de los años 90, cuando las zapatillas de skate eran extra hinchadas. Confeccionadas con parte superior de ante y lienzo, este modelo de perfil bajo presenta una gran lengüeta hinchada y un cuello en el tobillo, lo que le da un aspecto exagerado que juega con la Old Skool original. Manteniendo la estética \"Off The Wall\", nuestro icónico Vans Sidestripe ™ se ha rediseñado como un molde 3D de diamante hinchado, que se suma a la apariencia y sensación general gruesa. La adición de tiradores en el talón ofrece un fácil acceso para entrar y salir. Contiene tiradores en el talón para facilitar la calzada y suela waffle de goma distintiva.",
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_gris/1.jpg", 1, 4, 1},
+             //u knu stack
+             {"U Knu Stack", 189000.0, 
+             "Un estilo hinchado de los 90 con suela de plataforma gruesa Las Knu Stack comienzan con nuestra interpretación moderna de una silueta clásica de los 90 y luego la lleva a un nivel superior. Con el doble de altura, una lengüeta hinchada y una banda lateral moldeada en 3D, este calzado directo cuenta con detalles de estilo dramáticos que combinan un ícono del pasado con las tendencias audaces de hoy. Zapato bajo reeditado de los 90. Altura de la plataforma de 34 mm. Parte superior de gamuza resistente.Lengüeta hinchada y cuello en el tobillo. Sidestripe hinchado moldeado en 3D. Cordones gruesos de gran tamaño. Suela exterior waffle de goma distintiva.",
+             "http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/1.jpg", 1, 1, 1},
+
+            // Classic + (ID: 2)
+            //hylane negro
+            {"Vans Zapatillas U Hylane", 189000.0,
+             "Hylane es una zapatilla inspirada en el skate Y2K que reinterpreta nuestra silueta Upland de 1999. Los guiños al pasado coexisten con detalles de diseño elevados como la Sidestripe brillante en 3D y los logotipos bordados, mientras que la postura robusta y la lengüeta de skate abultada brindan un aspecto y una sensación retro. Terminada con una construcción de suela tipo cupsole y una textura única de V entrelazada, Hylane transforma una estética de la vieja escuela en un elemento esencial del guardarropa actual. Parte superior de cuero y sintético. Sidestripe brillante y abullonada.Lengüeta de patín hinchada Y2K.Construcción robusta de suela tipo copa.Diseño de pared lateral gruesa con canal de compresión.Suela exterior tipo waffle invertida con logotipo de Vans de gran tamaño y ranuras flexibles.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_hylane/1.jpg", 2, 1, 1},
+            //u upland
+            {"Vans Zapatillas U Upland", 189000.0,
+             "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland/1.jpg", 2, 1, 1},
+            //u upland crema
+            {"Vans Zapatillas U Upland", 189000.0,
+             "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_crema/1.jpg", 2, 5, 1},
+             //u upland negro negro 
+             {"Vans Zapatillas U Upland", 189000.0,
+             "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_negro_negro/1.jpg", 2, 1, 1},
+             //u upland rosa
+             {"Vans Zapatillas U Upland", 189000.0,
+             "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_rosa/1.jpg", 2, 6, 1},
+             //u upland blanco
+             {"Vans Zapatillas U Upland", 189000.0,
+             "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+             "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/1.jpg", 2, 7, 1},
             
-            // U CLASSIC SLIP-ON
-            {"U CLASSIC SLIP-ON", 79000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/4.jpg", 2, 1, 1},
-            {"U CLASSIC SLIP-ON", 79000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/5.jpg", 2, 2, 1},
-            {"U CLASSIC SLIP-ON", 79000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/6.jpg", 2, 1, 1},
             
-            // U SK8-HI
-            {"U SK8-HI", 146000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/7.jpg", 5, 1, 1},
-            {"U SK8-HI", 146000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/8.jpg", 5, 2, 1},
-            {"U SK8-HI", 146000.0,
-             "El Canvas Classic Slip-on tiene un perfil bajo, parte superior de lona con apliques laterales elásticos, etiqueta de la bandera Vans y suela original Waffle de Vans.",
-             "http://localhost:9000/api/v1/product-images/files/9.jpg", 5, 4, 1},
-            
-            // U AUTHENTIC
-            {"U AUTHENTIC", 79000.0,
-             "La Authentic es el modelo fundamental y clásico de Vans. Lanzada en el año 1966, ahora es un modelo icónico de Vans. Es un modelo simple, con cordones, parte superior de lona duradera, ojales de metal, etiqueta de la bandera de Vans y suela original Waffle de Vans. *IMPORTANTE: Del talle 35 al 38 viene con 4 ojales y del 38.5 al 47 con 5.",
-             "http://localhost:9000/api/v1/product-images/files/10.jpg", 2, 1, 1},
-            {"U AUTHENTIC", 79000.0,
-             "La Authentic es el modelo fundamental y clásico de Vans. Lanzada en el año 1966, ahora es un modelo icónico de Vans. Es un modelo simple, con cordones, parte superior de lona duradera, ojales de metal, etiqueta de la bandera de Vans y suela original Waffle de Vans. *IMPORTANTE: Del talle 35 al 38 viene con 4 ojales y del 38.5 al 47 con 5.",
-             "http://localhost:9000/api/v1/product-images/files/11.jpg", 2, 3, 1},
-            {"U AUTHENTIC", 79000.0,
-             "La Authentic es el modelo fundamental y clásico de Vans. Lanzada en el año 1966, ahora es un modelo icónico de Vans. Es un modelo simple, con cordones, parte superior de lona duradera, ojales de metal, etiqueta de la bandera de Vans y suela original Waffle de Vans. *IMPORTANTE: Del talle 35 al 38 viene con 4 ojales y del 38.5 al 47 con 5.",
-             "http://localhost:9000/api/v1/product-images/files/12.jpg", 2, 7, 1},
-            
-            // U OLD SKOOL
-            {"U OLD SKOOL", 132000.0,
-             "Las Old Skool son las zapatillas clásicas de Vans y el primer modelo en lucir el icónico sidestripe de la marca. Nacieron como un calzado para skaters de los años 70´y con el correr de las décadas se transformó en un modelo básico de lifestyle. Son zapatillas de corte bajo confeccionadas con capellada resistente, tiene punteras reforzadas para añadir durabilidad, la suela de caucho original Vans Wafflesole y cuello acolchado para ofrecer sujeción y confort.",
-             "http://localhost:9000/api/v1/product-images/files/13.jpg", 7, 9, 1},
-            {"U OLD SKOOL", 132000.0,
-             "Las Old Skool son las zapatillas clásicas de Vans y el primer modelo en lucir el icónico sidestripe de la marca. Nacieron como un calzado para skaters de los años 70´y con el correr de las décadas se transformó en un modelo básico de lifestyle. Son zapatillas de corte bajo confeccionadas con capellada resistente, tiene punteras reforzadas para añadir durabilidad, la suela de caucho original Vans Wafflesole y cuello acolchado para ofrecer sujeción y confort.",
-             "http://localhost:9000/api/v1/product-images/files/14.jpg", 7, 5, 1},
-            {"U OLD SKOOL", 132000.0,
-             "Las Old Skool son las zapatillas clásicas de Vans y el primer modelo en lucir el icónico sidestripe de la marca. Nacieron como un calzado para skaters de los años 70´y con el correr de las décadas se transformó en un modelo básico de lifestyle. Son zapatillas de corte bajo confeccionadas con capellada resistente, tiene punteras reforzadas para añadir durabilidad, la suela de caucho original Vans Wafflesole y cuello acolchado para ofrecer sujeción y confort.",
-             "http://localhost:9000/api/v1/product-images/files/15.jpg", 7, 6, 1}
+            //SKATE (ID: 3)
+
+            // m current caples marron
+            {"Vans Zapatillas M Skate Curren Caples", 146000.0,
+             "Las nuevas zapatillas de Vans y Curren Caples son una apuesta conjunta que busca la perfección de la tecnología vulcanizada. Para ello, se toma la mítica silueta y perfil estilizado de la firma para crear algo completamente nuevo, capaz de albergar una de las suelas con más capacidades de performance de la firma. Y, como debut, se presentan en cuatro colorways que tocan tanto a las raíces californianas de Caples como el legado histórico de la firma. En cuanto a su construcción, las nuevas Vans Curren presentan un cuerpo superior tonal en variantes de cuero o ante y lona acentuado por costuras minimalistas y una Side Stripe mucho más estilizada. Aquí, se incluyen los detalles típicos de cualquier zapatilla Vans, como un tag en el medial, ojales metálicos y cordones simples. Solo que, obviamente, el empeine viene coronado por un parche colaborativo. Pero la verdadera magia de las nuevas Vans Curren se encuentra en la parte inferior. El lower de este nuevo modelo presenta una construcción de goma vulcanizada completamente custom cargada de las mejores tecnologías de la firma. La goma, por ejemplo, está hecha del compuesto SickStick, lo que proporciona capacidades ultra avanzadas. También, nos encontramos con refuerzos DuraCap en lugares estratégicos para garantizar una mayor durabilidad y plantillas PopCush, que proporcionan protección optimizada ante impactos. • Parte superior de cuero. • Parche de lengüeta personalizado. • Plantillas Pop Cush. • Refuerzo de talón. • Lengüeta con cierre. • Construcción Duracap transpirable. • Revestimiento de dos piezas. • Pestaña tejida Vans. • Suela con fórmula SickStick de Vans.",
+             "http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_marron/1.jpg", 3, 2, 1},
+             //m curren blanco
+             {"Vans Zapatillas M Skate Curren Caples", 146000.0,
+             "Las nuevas zapatillas de Vans y Curren Caples son una apuesta conjunta que busca la perfección de la tecnología vulcanizada. Para ello, se toma la mítica silueta y perfil estilizado de la firma para crear algo completamente nuevo, capaz de albergar una de las suelas con más capacidades de performance de la firma. Y, como debut, se presentan en cuatro colorways que tocan tanto a las raíces californianas de Caples como el legado histórico de la firma. En cuanto a su construcción, las nuevas Vans Curren presentan un cuerpo superior tonal en variantes de cuero o ante y lona acentuado por costuras minimalistas y una Side Stripe mucho más estilizada. Aquí, se incluyen los detalles típicos de cualquier zapatilla Vans, como un tag en el medial, ojales metálicos y cordones simples. Solo que, obviamente, el empeine viene coronado por un parche colaborativo. Pero la verdadera magia de las nuevas Vans Curren se encuentra en la parte inferior. El lower de este nuevo modelo presenta una construcción de goma vulcanizada completamente custom cargada de las mejores tecnologías de la firma. La goma, por ejemplo, está hecha del compuesto SickStick, lo que proporciona capacidades ultra avanzadas. También, nos encontramos con refuerzos DuraCap en lugares estratégicos para garantizar una mayor durabilidad y plantillas PopCush, que proporcionan protección optimizada ante impactos. • Parte superior de cuero. • Parche de lengüeta personalizado. • Plantillas Pop Cush. • Refuerzo de talón. • Lengüeta con cierre. • Construcción Duracap transpirable. • Revestimiento de dos piezas. • Pestaña tejida Vans. • Suela con fórmula SickStick de Vans.",
+             "http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_blanco/1.jpg", 3, 7, 1},
+            //m2 waybee violeta
+            {"Vans Zapatillas M Skate 2 Wayvee", 146000.0,
+             "El Wayvee 2.0 está diseñado para skaters que exigen tanto rendimiento como estilo. Este modelo actualizado, que evoluciona a partir de su diseño original, refina elementos clave para ofrecer una experiencia de patinaje de nivel superior. Con una malla transpirable, un panel de guarda barros duradero y la construcción Wafflecup característica de Vans, el Wayvee 2.0 combina tecnología de vanguardia con una estética atemporal. • Parte superior de malla transpirable para una comodidad ligera y ventilada. • Diseñado para andar en skate con características mejoradas de durabilidad y rendimiento. • Protección de cordones integrada para una funcionalidad específica para skate. • Panel guarda barro duradero para mayor protección en áreas de alto desgaste. • Las plantillas PopCush™ ofrecen protección contra impactos y reducen la fatiga de las piernas para patinar durante períodos prolongados. • Las capas inferiores DURACAP™ añaden refuerzo a las áreas de mayor desgaste. • La goma SickStick™, la más pegajosa hasta el momento, te mantiene pegado a tu tabla. • Wafflecup™ combina el soporte y la durabilidad de la suela tipo copa con la sensación y flexibilidad de una tabla vulcanizada. • Insignia icónica Sidestripe™.",
+             "http://localhost:9000/api/v1/product-images/files/skate/m2_violeta/1.jpg",3, 8, 1},
+             //m2 waybee blanco
+            {"Vans Zapatillas M Skate 2 Wayvee", 146000.0,
+            "El Wayvee 2.0 está diseñado para skaters que exigen tanto rendimiento como estilo. Este modelo actualizado, que evoluciona a partir de su diseño original, refina elementos clave para ofrecer una experiencia de patinaje de nivel superior. Con una malla transpirable, un panel de guarda barros duradero y la construcción Wafflecup característica de Vans, el Wayvee 2.0 combina tecnología de vanguardia con una estética atemporal. • Parte superior de malla transpirable para una comodidad ligera y ventilada. • Diseñado para andar en skate con características mejoradas de durabilidad y rendimiento. • Protección de cordones integrada para una funcionalidad específica para skate. • Panel guarda barro duradero para mayor protección en áreas de alto desgaste. • Las plantillas PopCush™ ofrecen protección contra impactos y reducen la fatiga de las piernas para patinar durante períodos prolongados. • Las capas inferiores DURACAP™ añaden refuerzo a las áreas de mayor desgaste. • La goma SickStick™, la más pegajosa hasta el momento, te mantiene pegado a tu tabla. • Wafflecup™ combina el soporte y la durabilidad de la suela tipo copa con la sensación y flexibilidad de una tabla vulcanizada. • Insignia icónica Sidestripe™.",
+            "http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/1.jpg",3, 7, 1},
+
+            //SURF
+
+            //u_u_exo_negro_negro
+            {"Vans Zapatillas U ULTRARANGE EXO", 146000.0,
+            "La Ultrarange EXO de Vans ofrece un diseño innovador y funcional pensado para la aventura diaria. Confeccionada en mesh y material sintético, este modelo combina resistencia, transpirabilidad y estilo urbano. Su estructura incorpora la tecnología UltraCush™ en la entresuela para una amortiguación liviana, mientras que la suela de goma antideslizante con patrón tipo waffle invertido mejora el agarre en distintas superficies. El diseño verde con detalles en crudo le da un toque moderno y versátil, ideal para cualquier ocasión. Descubrí el confort y la durabilidad que necesitas. IMPORTANTE: Este modelo cuenta con una horma angosta. Recomendamos comprar un punto más. hoy con envío a domicilio o retiralo por nuestras sucursales. Pagá en cuotas y aprovechá las promociones vigentes.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro_negro/1.jpg",4, 1, 1},
+            //u_u_exo_blanco
+            {"Vans Zapatillas U ULTRARANGE EXO", 146000.0,
+            "La Ultrarange EXO de Vans ofrece un diseño innovador y funcional pensado para la aventura diaria. Confeccionada en mesh y material sintético, este modelo combina resistencia, transpirabilidad y estilo urbano. Su estructura incorpora la tecnología UltraCush™ en la entresuela para una amortiguación liviana, mientras que la suela de goma antideslizante con patrón tipo waffle invertido mejora el agarre en distintas superficies. El diseño verde con detalles en crudo le da un toque moderno y versátil, ideal para cualquier ocasión. Descubrí el confort y la durabilidad que necesitas. IMPORTANTE: Este modelo cuenta con una horma angosta. Recomendamos comprar un punto más. hoy con envío a domicilio o retiralo por nuestras sucursales. Pagá en cuotas y aprovechá las promociones vigentes.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco/1.jpg",4, 7, 1},
+            //u_u_exo_blanco_negro
+            {"Vans Zapatillas U ULTRARANGE EXO", 146000.0,
+            "La Ultrarange EXO de Vans ofrece un diseño innovador y funcional pensado para la aventura diaria. Confeccionada en mesh y material sintético, este modelo combina resistencia, transpirabilidad y estilo urbano. Su estructura incorpora la tecnología UltraCush™ en la entresuela para una amortiguación liviana, mientras que la suela de goma antideslizante con patrón tipo waffle invertido mejora el agarre en distintas superficies. El diseño verde con detalles en crudo le da un toque moderno y versátil, ideal para cualquier ocasión. Descubrí el confort y la durabilidad que necesitas. IMPORTANTE: Este modelo cuenta con una horma angosta. Recomendamos comprar un punto más. hoy con envío a domicilio o retiralo por nuestras sucursales. Pagá en cuotas y aprovechá las promociones vigentes.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco_negro/1.jpg",4, 7, 1},
+            //Vans Zapatillas U Crosspath negro negro
+            {"Vans Zapatillas U Crosspath", 239000.0,
+            "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro_negro/1.jpg",4, 1, 1},
+            //Vans Zapatillas U Crosspath naranja
+            {"Vans Zapatillas U Crosspath", 239000.0,
+            "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_cross_naranja/1.jpg",4, 10, 1},
+            //Vans Zapatillas U Crosspath negro
+            {"Vans Zapatillas U Crosspath", 239000.0,
+            "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg",4, 1, 1},
+
         };
 
         for (Object[] data : productData) {
@@ -244,97 +286,146 @@ public class DataInitializer implements CommandLineRunner {
     private void loadProductImages() throws Exception {
         System.out.println("Cargando imágenes de productos...");
         
-        // Imágenes para TODOS los 15 productos
+        // Imágenes para TODOS los productos con URLs corregidas
         Object[][] imageData = {
             // Producto 1 - U Knu Skool Negro
-            {"http://localhost:9000/api/v1/product-images/files/16.jpg", 1, true},
-            {"http://localhost:9000/api/v1/product-images/files/17.jpg", 1, false},
-            {"http://localhost:9000/api/v1/product-images/files/18.jpg", 1, false},
-            {"http://localhost:9000/api/v1/product-images/files/19.jpg", 1, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro/1.jpg", 1, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro/2.jpg", 1, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro/3.jpg", 1, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro/4.jpg", 1, false},
             
-            // Producto 2 - U Knu Skool Blanco
-            {"http://localhost:9000/api/v1/product-images/files/20.jpg", 2, true},
-            {"http://localhost:9000/api/v1/product-images/files/21.jpg", 2, false},
-            {"http://localhost:9000/api/v1/product-images/files/22.jpg", 2, false},
-            {"http://localhost:9000/api/v1/product-images/files/23.jpg", 2, false},
+            // Producto 2 - U Knu Skool marron
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_marron/1.jpg", 2, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_marron/2.jpg", 2, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_marron/3.jpg", 2, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_marron/4.jpg", 2, false},
             
-            // Producto 3 - U Knu Skool Gris
-            {"http://localhost:9000/api/v1/product-images/files/24.jpg", 3, true},
-            {"http://localhost:9000/api/v1/product-images/files/25.jpg", 3, false},
-            {"http://localhost:9000/api/v1/product-images/files/26.jpg", 3, false},
-            {"http://localhost:9000/api/v1/product-images/files/27.jpg", 3, false},
+            // Producto 3 - U Knu negro negro
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro_negro/1.jpg", 3, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro_negro/2.jpg", 3, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro_negro/3.jpg", 3, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_negro_negro/4.jpg", 3, false},
             
-            // Producto 4 - U CLASSIC SLIP-ON Negro
-            {"http://localhost:9000/api/v1/product-images/files/28.jpg", 4, true},
-            {"http://localhost:9000/api/v1/product-images/files/29.jpg", 4, false},
-            {"http://localhost:9000/api/v1/product-images/files/30.jpg", 4, false},
-            {"http://localhost:9000/api/v1/product-images/files/31.jpg", 4, false},
+            // Producto 4 - U Knu azul
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_azul/1.jpg", 4, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_azul/2.jpg", 4, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_azul/3.jpg", 4, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_azul/4.jpg", 4, false},
             
-            // Producto 5 - U CLASSIC SLIP-ON Blanco
-            {"http://localhost:9000/api/v1/product-images/files/32.jpg", 5, true},
-            {"http://localhost:9000/api/v1/product-images/files/33.jpg", 5, false},
-            {"http://localhost:9000/api/v1/product-images/files/34.jpg", 5, false},
-            {"http://localhost:9000/api/v1/product-images/files/35.jpg", 5, false},
+            // Producto 5 - U Knu gris
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_gris/1.jpg", 5, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_gris/2.jpg", 5, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_gris/3.jpg", 5, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_skool_gris/4.jpg", 5, false},
             
-            // Producto 6 - U CLASSIC SLIP-ON Negro (variante)
-            {"http://localhost:9000/api/v1/product-images/files/36.jpg", 6, true},
-            {"http://localhost:9000/api/v1/product-images/files/37.jpg", 6, false},
-            {"http://localhost:9000/api/v1/product-images/files/38.jpg", 6, false},
-            {"http://localhost:9000/api/v1/product-images/files/39.jpg", 6, false},
+            // Producto 6 - U Knu stack
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/1.jpg", 6, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/2.jpg", 6, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/3.jpg", 6, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/4.jpg", 6, false},
             
-            // Producto 7 - U SK8-HI Negro
-            {"http://localhost:9000/api/v1/product-images/files/40.jpg", 7, true},
-            {"http://localhost:9000/api/v1/product-images/files/41.jpg", 7, false},
-            {"http://localhost:9000/api/v1/product-images/files/42.jpg", 7, false},
-            {"http://localhost:9000/api/v1/product-images/files/43.jpg", 7, false},
+            // Producto 7 - U Hylane
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_hylane/1.jpg", 7, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_hylane/2.jpg", 7, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_hylane/3.jpg", 7, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_hylane/4.jpg", 7, false},
             
-            // Producto 8 - U SK8-HI Blanco
-            {"http://localhost:9000/api/v1/product-images/files/44.jpg", 8, true},
-            {"http://localhost:9000/api/v1/product-images/files/45.jpg", 8, false},
-            {"http://localhost:9000/api/v1/product-images/files/46.jpg", 8, false},
-            {"http://localhost:9000/api/v1/product-images/files/47.jpg", 8, false},
+            // Producto 8 - U Upland
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland/1.jpg", 8, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland/2.jpg", 8, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland/3.jpg", 8, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland/4.jpg", 8, false},
             
-            // Producto 9 - U SK8-HI Azul
-            {"http://localhost:9000/api/v1/product-images/files/48.jpg", 9, true},
-            {"http://localhost:9000/api/v1/product-images/files/49.jpg", 9, false},
-            {"http://localhost:9000/api/v1/product-images/files/50.jpg", 9, false},
-            {"http://localhost:9000/api/v1/product-images/files/51.jpg", 9, false},
+            // Producto 9 - U Upland crema
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_crema/1.jpg", 9, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_crema/2.jpg", 9, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_crema/3.jpg", 9, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_crema/4.jpg", 9, false},
             
-            // Producto 10 - U AUTHENTIC Negro
-            {"http://localhost:9000/api/v1/product-images/files/52.jpg", 10, true},
-            {"http://localhost:9000/api/v1/product-images/files/53.jpg", 10, false},
-            {"http://localhost:9000/api/v1/product-images/files/54.jpg", 10, false},
-            {"http://localhost:9000/api/v1/product-images/files/55.jpg", 10, false},
+            // Producto 10 - U Upland negro negro
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_negro_negro/1.jpg", 10, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_negro_negro/2.jpg", 10, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_negro_negro/3.jpg", 10, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_negro_negro/4.jpg", 10, false},
             
-            // Producto 11 - U AUTHENTIC Rojo
-            {"http://localhost:9000/api/v1/product-images/files/56.jpg", 11, true},
-            {"http://localhost:9000/api/v1/product-images/files/57.jpg", 11, false},
-            {"http://localhost:9000/api/v1/product-images/files/58.jpg", 11, false},
-            {"http://localhost:9000/api/v1/product-images/files/59.jpg", 11, false},
+            // Producto 11 - U Upland rosa
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_rosa/1.jpg", 11, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_rosa/2.jpg", 11, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_rosa/3.jpg", 11, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_rosa/4.jpg", 11, false},
             
-            // Producto 12 - U AUTHENTIC Rosa
-            {"http://localhost:9000/api/v1/product-images/files/60.jpg", 12, true},
-            {"http://localhost:9000/api/v1/product-images/files/61.jpg", 12, false},
-            {"http://localhost:9000/api/v1/product-images/files/62.jpg", 12, false},
-            {"http://localhost:9000/api/v1/product-images/files/63.jpg", 12, false},
+            // Producto 12 - U Upland blanco
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/1.jpg", 12, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/2.jpg", 12, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/3.jpg", 12, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/4.jpg", 12, false},
             
-            // Producto 13 - U OLD SKOOL Morado
-            {"http://localhost:9000/api/v1/product-images/files/64.jpg", 13, true},
-            {"http://localhost:9000/api/v1/product-images/files/65.jpg", 13, false},
-            {"http://localhost:9000/api/v1/product-images/files/66.jpg", 13, false},
-            {"http://localhost:9000/api/v1/product-images/files/67.jpg", 13, false},
+            // Producto 13 - M Skate Curren Caples marron
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_marron/1.jpg", 13, true},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_marron/2.jpg", 13, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_marron/3.jpg", 13, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_marron/4.jpg", 13, false},
             
-            // Producto 14 - U OLD SKOOL Verde
-            {"http://localhost:9000/api/v1/product-images/files/68.jpg", 14, true},
-            {"http://localhost:9000/api/v1/product-images/files/69.jpg", 14, false},
-            {"http://localhost:9000/api/v1/product-images/files/70.jpg", 14, false},
-            {"http://localhost:9000/api/v1/product-images/files/71.jpg", 14, false},
+            // Producto 14 - M Skate Curren Caples blanco
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_blanco/1.jpg", 14, true},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_blanco/2.jpg", 14, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_blanco/3.jpg", 14, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m_current_caples_blanco/4.jpg", 14, false},
             
-            // Producto 15 - U OLD SKOOL Amarillo
-            {"http://localhost:9000/api/v1/product-images/files/72.jpg", 15, true},
-            {"http://localhost:9000/api/v1/product-images/files/73.jpg", 15, false},
-            {"http://localhost:9000/api/v1/product-images/files/74.jpg", 15, false},
-            {"http://localhost:9000/api/v1/product-images/files/75.jpg", 15, false}
+            // Producto 15 - M Skate 2 Wayvee violeta
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_violeta/1.jpg", 15, true},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_violeta/2.jpg", 15, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_violeta/3.jpg", 15, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_violeta/4.jpg", 15, false},
+            
+            // Producto 16 - M Skate 2 Wayvee blanco
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/1.jpg", 16, true},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/2.jpg", 16, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/3.jpg", 16, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/4.jpg", 16, false},
+
+            //SURF
+
+            //u_u_exo_negro_negro
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro_negro/1.jpg", 17, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro_negro/2.jpg", 17, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro_negro/3.jpg", 17, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro_negro/4.jpg", 17, false},
+
+            //u_u_exo_blanco
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco/1.jpg", 18, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco/2.jpg", 18, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco/3.jpg", 18, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_blanco/4.jpg", 18, false},
+
+            //u_u_exo_negro
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro/1.jpg", 19, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro/2.jpg", 19, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro/3.jpg", 19, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_u_exo_negro/4.jpg", 19, false},
+
+            //u_cross_negro_negro
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro_negro/1.jpg", 20, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro_negro/2.jpg", 20, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro_negro/3.jpg", 20, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro_negro/4.jpg", 20, false},
+
+            //u_cross_naranja
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_naranja/1.jpg", 21, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_naranja/2.jpg", 21, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_naranja/3.jpg", 21, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_naranja/4.jpg", 21, false},
+
+            //u_cross_negro
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg", 22, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/2.jpg", 22, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/3.jpg", 22, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/4.jpg", 22, false},
+
+
+
+
+
         };
 
         for (Object[] data : imageData) {

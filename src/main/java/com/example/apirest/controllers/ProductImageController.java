@@ -87,10 +87,10 @@ public class ProductImageController extends BaseController<ProductImage, Integer
     }
 
     // ENDPOINT PARA SERVIR LAS Img
-    @GetMapping("/files/{filename}")
-    public ResponseEntity<byte[]> getImage(@PathVariable String filename) {
+    @GetMapping("/files/{*path}")
+    public ResponseEntity<byte[]> getImage(@PathVariable String path) {
         try {
-            Path filePath = Paths.get(UPLOAD_DIR + filename);
+            Path filePath = Paths.get(UPLOAD_DIR + path);
             
             if (!Files.exists(filePath)) {
                 return ResponseEntity.notFound().build();
@@ -100,9 +100,9 @@ public class ProductImageController extends BaseController<ProductImage, Integer
             
             // determinar el tipo de contenido basado en la extensión
             String contentType = "image/jpeg"; // por defecto
-            if (filename.toLowerCase().endsWith(".png")) {
+            if (path.toLowerCase().endsWith(".png")) {
                 contentType = "image/png";
-            } else if (filename.toLowerCase().endsWith(".gif")) {
+            } else if (path.toLowerCase().endsWith(".gif")) {
                 contentType = "image/gif";
             }
 
