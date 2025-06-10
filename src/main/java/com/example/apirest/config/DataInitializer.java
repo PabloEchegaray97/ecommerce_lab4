@@ -422,17 +422,42 @@ public class DataInitializer implements CommandLineRunner {
             
             int associationsCount = 0;
             int totalStock = 0;
+            int zeroStockCount = 0;
             
             // Asociar cada producto con todos los talles disponibles
             for (var product : products) {
+                // Para cada producto, crear una lista de stocks
+                java.util.List<Integer> productStockList = new java.util.ArrayList<>();
+                
+                // Garantizar que al menos 4 talles tengan stock 0 para este producto
+                int zeroStockForProduct = Math.min(4, sizes.size());
+                for (int i = 0; i < zeroStockForProduct; i++) {
+                    productStockList.add(0);
+                }
+                
+                // Completar el resto con valores aleatorios entre 1 y 100
+                for (int i = productStockList.size(); i < sizes.size(); i++) {
+                    int stock = (int) (Math.random() * 100) + 1; // 1 a 100
+                    productStockList.add(stock);
+                }
+                
+                // Mezclar la lista para distribuir aleatoriamente los stocks de este producto
+                java.util.Collections.shuffle(productStockList);
+                
+                // Asignar stocks a cada talle de este producto
+                int sizeIndex = 0;
                 for (var size : sizes) {
                     ProductSize productSize = new ProductSize();
                     productSize.setIdProduct(product.getId());
                     productSize.setIdSize(size.getId());
                     
-                    // Generar stock aleatorio entre 0 y 100
-                    int stock = (int) (Math.random() * 101); // 0 a 100 
+                    // Asignar stock de la lista pre-generada para este producto
+                    int stock = productStockList.get(sizeIndex++);
                     productSize.setStock(stock);
+                    
+                    if (stock == 0) {
+                        zeroStockCount++;
+                    }
                     
                     productSizeService.save(productSize);
                     associationsCount++;
@@ -444,6 +469,8 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("(" + products.size() + " productos × " + sizes.size() + " talles = " + associationsCount + " asociaciones)");
             System.out.println("Stock total generado: " + totalStock + " unidades");
             System.out.println("Stock promedio por producto-talle: " + (totalStock / associationsCount) + " unidades");
+            System.out.println("Talles sin stock (stock = 0): " + zeroStockCount);
+            System.out.println("Cada producto tiene al menos 4 talles sin stock");
         } else {
             System.out.println("Las asociaciones producto-talle ya están cargadas en la base de datos.");
         }
