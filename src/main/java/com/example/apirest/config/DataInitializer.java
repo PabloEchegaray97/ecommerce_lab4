@@ -372,16 +372,18 @@ public class DataInitializer implements CommandLineRunner {
             for (String sizeNumber : euSizes) {
                 Size size = new Size();
                 size.setNumber(sizeNumber);
-                size.setSystemType(Size.SystemType.EU);
+                size.setSystemType(Size.SystemType.ARG);
                 size.setCreatedAt(LocalDateTime.now());
                 size.setIsActive(true);
                 sizeService.save(size);
             }
             
             // Talles estadounidenses estándar para zapatillas
-            String[] usSizes = {"6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"};
-            
-            for (String sizeNumber : usSizes) {
+            /*
+             * 
+             String[] usSizes = {"6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13"};
+             
+             for (String sizeNumber : usSizes) {
                 Size size = new Size();
                 size.setNumber(sizeNumber);
                 size.setSystemType(Size.SystemType.US);
@@ -389,9 +391,10 @@ public class DataInitializer implements CommandLineRunner {
                 size.setIsActive(true);
                 sizeService.save(size);
             }
+            */
             
-            System.out.println("OK " + euSizes.length + " talles europeos y " + usSizes.length + " talles estadounidenses.");
-            System.out.println("Total de talles cargados: " + (euSizes.length + usSizes.length));
+            System.out.println("OK " + euSizes.length + " talles europeos = argentinos.");
+            System.out.println("Total de talles cargados: " + euSizes.length);
         } else {
             System.out.println("Los talles ya están cargados en la base de datos.");
         }

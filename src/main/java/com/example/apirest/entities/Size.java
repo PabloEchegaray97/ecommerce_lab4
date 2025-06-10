@@ -27,15 +27,15 @@ public class Size extends Base  {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "system_type")
-    private SystemType systemType; //// EU, US, UK, CM, etc.
+    private SystemType systemType; //// ARG = EU, US, UK, CM, etc.
 
     public enum SystemType {
-        EU, US, UK, CM
+        ARG, US, UK, CM
     }
 
 /*
 Sistema	    Región	            Ejemplo
-EU	        Europa	            38, 42...
+EU	        ARGENTINA = Europa	            38, 42...
 US	        Estados Unidos	    7, 10.5...
 UK	        Reino Unido	        6, 9...
 CM	        Centímetros (Japón)	25.5, 27...
