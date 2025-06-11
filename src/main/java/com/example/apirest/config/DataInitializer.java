@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -79,6 +81,7 @@ public class DataInitializer implements CommandLineRunner {
         loadPurchaseOrder();
         loadCancelledOrder();
         loadPaidOrder();
+        loadTestOrders(); // Agregar las 5 órdenes de prueba
     }
 
     private void loadColours() throws Exception {
@@ -262,6 +265,23 @@ public class DataInitializer implements CommandLineRunner {
             {"Vans Zapatillas U Crosspath", 239000.0,
             "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
             "http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg",4, 1, 1},
+            //////////////////// PRUEBAS /////////////////////
+            //m2 waybee blanco
+            {"Vans Zapatillas M Skate 2 Wayvee", 100.0,
+            "El Wayvee 2.0 está diseñado para skaters que exigen tanto rendimiento como estilo. Este modelo actualizado, que evoluciona a partir de su diseño original, refina elementos clave para ofrecer una experiencia de patinaje de nivel superior. Con una malla transpirable, un panel de guarda barros duradero y la construcción Wafflecup característica de Vans, el Wayvee 2.0 combina tecnología de vanguardia con una estética atemporal. • Parte superior de malla transpirable para una comodidad ligera y ventilada. • Diseñado para andar en skate con características mejoradas de durabilidad y rendimiento. • Protección de cordones integrada para una funcionalidad específica para skate. • Panel guarda barro duradero para mayor protección en áreas de alto desgaste. • Las plantillas PopCush™ ofrecen protección contra impactos y reducen la fatiga de las piernas para patinar durante períodos prolongados. • Las capas inferiores DURACAP™ añaden refuerzo a las áreas de mayor desgaste. • La goma SickStick™, la más pegajosa hasta el momento, te mantiene pegado a tu tabla. • Wafflecup™ combina el soporte y la durabilidad de la suela tipo copa con la sensación y flexibilidad de una tabla vulcanizada. • Insignia icónica Sidestripe™.",
+            "http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/1.jpg",3, 7, 1},
+            //u upland blanco
+            {"Vans Zapatillas U Upland", 100.0,
+            "Conoce las Upland, una zapatilla del pasado rediseñada para el futuro. Hemos tomado el clásico low-top de los 90 y le hemos añadido algunos toques modernos. La forma rediseñada del pie brinda ajuste y comodidad mejorados, mientras que los materiales elevados combinan durabilidad y estilo. Con cordones de gran tamaño y logotipos atrevidos, el Upland une a la perfección nuestra herencia con todo lo que nos depara la actualidad. Zapatillas bajas gruesas estilo años 90 Inspirada en los archivos, se basa en el legado de la silueta Upland original. La suela cosida envuelve todo el zapato para una durabilidad increíble. La parte superior combina cuero y polietileno para brindar estilo y resistencia. Nueva y mejorada forma del pie para mayor comodidad. El cuello hinchado y la lengüeta acolchada brindan ese soporte adicional El logotipo Heritage \"Flying V\" hace un guiño al legado de Upland Los cordones anchos añaden un toque clásico.",
+            "http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/1.jpg", 2, 7, 1},
+            //u knu stack
+            {"U Knu Stack", 100.0, 
+            "Un estilo hinchado de los 90 con suela de plataforma gruesa Las Knu Stack comienzan con nuestra interpretación moderna de una silueta clásica de los 90 y luego la lleva a un nivel superior. Con el doble de altura, una lengüeta hinchada y una banda lateral moldeada en 3D, este calzado directo cuenta con detalles de estilo dramáticos que combinan un ícono del pasado con las tendencias audaces de hoy. Zapato bajo reeditado de los 90. Altura de la plataforma de 34 mm. Parte superior de gamuza resistente.Lengüeta hinchada y cuello en el tobillo. Sidestripe hinchado moldeado en 3D. Cordones gruesos de gran tamaño. Suela exterior waffle de goma distintiva.",
+            "http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/1.jpg", 1, 1, 1},
+            //Vans Zapatillas U Crosspath negro
+            {"Vans Zapatillas U Crosspath", 100.0,
+            "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
+            "http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg",4, 1, 1},
 
         };
 
@@ -421,6 +441,34 @@ public class DataInitializer implements CommandLineRunner {
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/2.jpg", 22, false},
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/3.jpg", 22, false},
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/4.jpg", 22, false},
+            
+            
+            // PRUEBASSS  M Skate 2 Wayvee blanco
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/1.jpg", 23, true},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/2.jpg", 23, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/3.jpg", 23, false},
+            {"http://localhost:9000/api/v1/product-images/files/skate/m2_blanco/4.jpg", 23, false},
+
+            ////// PRUEBAS////// upland blanco
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/1.jpg", 24, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/2.jpg", 24, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/3.jpg", 24, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics_plus/u_upland_blanco/4.jpg", 24, false},
+
+            ////// PRUEBAS////// knu stack
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/1.jpg", 25, true},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/2.jpg", 25, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/3.jpg", 25, false},
+            {"http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/4.jpg", 25, false},
+
+            //u_cross_negro PREUBAS
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg", 26, true},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/2.jpg", 26, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/3.jpg", 26, false},
+            {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/4.jpg", 26, false},
+
+
+
 
 
 
@@ -964,5 +1012,113 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("     * " + products.get(i + 6).getName() + " (Cantidad: " + quantities[i] + ", Talle: " + sizes.get(i + 6).getNumber() + " " + sizes.get(i + 6).getSystemType() + ")");
         }
         System.out.println("   - Total de productos: " + (quantities[0] + quantities[1] + quantities[2] + quantities[3]) + " unidades");
+    }
+
+    private void loadTestOrders() throws Exception {
+        System.out.println("Cargando 5 órdenes de prueba idénticas...");
+        
+        // Obtener el cliente Juan Pérez
+        var users = userService.findAll();
+        User cliente = null;
+        for (User user : users) {
+            if ("juanperez".equals(user.getUsername())) {
+                cliente = user;
+                break;
+            }
+        }
+        
+        if (cliente == null) {
+            System.out.println("No se encontró el usuario cliente para crear las órdenes de prueba");
+            return;
+        }
+        
+        // Obtener la primera dirección del cliente
+        var userAddresses = usersAdressService.findAll();
+        UsersAdress clienteAddress = null;
+        for (UsersAdress userAddress : userAddresses) {
+            if (userAddress.getUserId().equals(cliente.getId())) {
+                clienteAddress = userAddress;
+                break;
+            }
+        }
+        
+        if (clienteAddress == null) {
+            System.out.println("No se encontró dirección para el cliente");
+            return;
+        }
+        
+        // Obtener todos los productos
+        var products = productService.findAll();
+        if (products.size() < 4) {
+            System.out.println("No hay suficientes productos para crear las órdenes de prueba");
+            return;
+        }
+        
+        // Obtener los últimos 4 productos (que tienen precio $100)
+        // Según el DataInitializer, los productos con precio $100 son los últimos 4
+        List<Product> testProducts = new ArrayList<>();
+        for (int i = products.size() - 4; i < products.size(); i++) {
+            if (products.get(i).getPrice() == 100.0) {
+                testProducts.add(products.get(i));
+            }
+        }
+        
+        if (testProducts.size() < 4) {
+            System.out.println("No se encontraron los 4 productos de $100 para las órdenes de prueba");
+            return;
+        }
+        
+        // Obtener talles disponibles
+        var sizes = sizeService.findAll();
+        if (sizes.size() < 4) {
+            System.out.println("No hay suficientes talles disponibles para crear las órdenes de prueba");
+            return;
+        }
+        
+        // Calcular el total: 4 productos × $100 × 2 unidades = $800
+        double total = 800.0;
+        
+        // Crear 5 órdenes de prueba idénticas
+        for (int orderNum = 1; orderNum <= 5; orderNum++) {
+            // Crear la orden de prueba
+            PurchaseOrder testOrder = new PurchaseOrder();
+            testOrder.setUserId(cliente.getId());
+            testOrder.setUserAddressId(clienteAddress.getAddressId());
+            testOrder.setTotal(total);
+            testOrder.setPaymentMethod("MercadoPago");
+            testOrder.setStatus(PurchaseOrder.Status.PENDING);
+            testOrder.setIsActive(true);
+            testOrder.setCreatedAt(LocalDateTime.now());
+            
+            // Guardar la orden
+            PurchaseOrder savedOrder = purchaseOrderService.save(testOrder);
+            
+            // Crear los detalles de la orden (2 unidades de cada producto)
+            for (int i = 0; i < 4; i++) {
+                Detail detail = new Detail();
+                detail.setQuantity(2); // 2 unidades de cada producto
+                detail.setProductId(testProducts.get(i).getId());
+                detail.setOrderId(savedOrder.getId());
+                detail.setSizeId(sizes.get(i).getId()); // Usar diferentes talles
+                detail.setIsActive(true);
+                detail.setCreatedAt(LocalDateTime.now());
+                
+                detailService.save(detail);
+            }
+            
+            System.out.println("Orden de prueba #" + orderNum + " creada (ID: " + savedOrder.getId() + ")");
+        }
+        
+        System.out.println("=== RESUMEN DE ÓRDENES DE PRUEBA ===");
+        System.out.println("5 órdenes de prueba creadas (PENDING):");
+        System.out.println("   - Cliente: " + cliente.getName() + " " + cliente.getLastName());
+        System.out.println("   - Total por orden: $" + total);
+        System.out.println("   - Estado: PENDING");
+        System.out.println("   - Productos por orden:");
+        for (int i = 0; i < testProducts.size(); i++) {
+            System.out.println("     * " + testProducts.get(i).getName() + " (Cantidad: 2, Precio: $" + testProducts.get(i).getPrice() + ")");
+        }
+        System.out.println("   - Total de productos por orden: 8 unidades");
+        System.out.println("   - Total general: $" + (total * 5) + " (5 órdenes × $" + total + ")");
     }
 } 

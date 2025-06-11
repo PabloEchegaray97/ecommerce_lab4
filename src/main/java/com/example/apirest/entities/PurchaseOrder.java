@@ -40,6 +40,9 @@ public class PurchaseOrder extends Base  {
     @Column(name = "payment_method")
     private String paymentMethod;
     
+    @Column(name = "payment_id")
+    private String paymentId;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
@@ -73,6 +76,7 @@ public class PurchaseOrder extends Base  {
     "userAddressId": 1,
     "total": 259.98,
     "paymentMethod": "Tarjeta",
+    "paymentId": null,
     "status": "PENDING"
 }
 */ 

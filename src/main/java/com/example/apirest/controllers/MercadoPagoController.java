@@ -120,4 +120,93 @@ public class MercadoPagoController {
 
         return ResponseEntity.status(HttpStatus.OK).body("{\"preferenceId\":\""+prefId+"\",\"paymentUrl\":\""+paymentUrl+"\"}");
     }
+
+    @PostMapping("/order/{orderId}")
+    public ResponseEntity<String> createPaymentForOrder(@PathVariable Integer orderId) throws Exception {
+        try {
+            MercadoPagoConfig.setAccessToken(mercadoPagoAccessToken);
+            
+            // Obtener la orden
+            PurchaseOrder order = purchaseOrderService.findById(orderId);
+            
+            if (order.getStatus() == PurchaseOrder.Status.PAID) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"La orden ya está pagada\"}");
+            }
+            
+            List<PreferenceItemRequest> items = new ArrayList<>();
+
+            PreferenceItemRequest item = PreferenceItemRequest.builder()
+                    .id("order-" + order.getId())
+                    .title("Orden de Compra #" + order.getId())
+                    .description("Pago de orden de compra de zapatillas")
+                    .quantity(1)
+                    .currencyId("ARS")
+                    .unitPrice(BigDecimal.valueOf(order.getTotal()))
+                    .build();
+            items.add(item);
+
+            PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
+                    .success("http://localhost:5173/paymentSuccess?orderId=" + orderId)
+                    .pending("http://localhost:5173/paymentPending?orderId=" + orderId)
+                    .failure("http://localhost:5173/paymentFailure?orderId=" + orderId)
+                    .build();
+
+            List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
+            excludedPaymentTypes.add(PreferencePaymentTypeRequest.builder().id("ticket").build());
+
+            PreferencePaymentMethodsRequest paymentMethods = PreferencePaymentMethodsRequest.builder()
+                    .excludedPaymentTypes(excludedPaymentTypes)
+                    .installments(1)
+                    .build();
+
+            PreferenceRequest preferenceRequest = PreferenceRequest.builder()
+                    .items(items)
+                    .backUrls(backUrls)
+                    .paymentMethods(paymentMethods)
+                    .externalReference(orderId.toString()) // Referencia a la orden
+                    .build();
+
+            PreferenceClient client = new PreferenceClient();
+            Preference preference = client.create(preferenceRequest);
+
+            String prefId = preference.getId();
+            String paymentUrl = preference.getInitPoint();
+            
+            System.out.println("=== PAGO PARA ORDEN ===");
+            System.out.println("Order ID: " + orderId);
+            System.out.println("Order Total: $" + order.getTotal());
+            System.out.println("Preference ID: " + prefId);
+            System.out.println("Payment URL: " + paymentUrl);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                .body("{\"preferenceId\":\""+prefId+"\",\"paymentUrl\":\""+paymentUrl+"\",\"orderId\":"+orderId+",\"orderTotal\":"+order.getTotal()+"}");
+                
+        } catch (Exception e) {
+            System.err.println("Error creando pago para orden " + orderId + ": " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("{\"error\":\"Error al crear el pago: " + e.getMessage() + "\"}");
+        }
+    }
+
+    // Endpoint para verificar el estado de una orden
+    @GetMapping("/order-status/{orderId}")
+    public ResponseEntity<String> getOrderStatus(@PathVariable Integer orderId) {
+        try {
+            PurchaseOrder order = purchaseOrderService.findById(orderId);
+            
+            String response = "{" +
+                "\"orderId\":" + order.getId() + "," +
+                "\"status\":\"" + order.getStatus() + "\"," +
+                "\"total\":" + order.getTotal() + "," +
+                "\"paymentMethod\":\"" + order.getPaymentMethod() + "\"," +
+                "\"isPaid\":" + (order.getStatus() == PurchaseOrder.Status.PAID) +
+                "}";
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("{\"error\":\"Orden no encontrada\"}");
+        }
+    }
 } 
