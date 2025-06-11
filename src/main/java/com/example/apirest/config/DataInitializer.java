@@ -58,13 +58,30 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Inicializando base de datos con datos de prueba...");
-        System.out.println("Tablas recreadas - cargando datos nuevos...");
+        System.out.println("Verificando estado de la base de datos...");
         
-        // Cargar datos iniciales siempre (create-drop garantiza tablas vacías)
-        loadInitialData();
+        // Verificar si ya existen datos básicos
+        boolean dataExists = checkIfDataExists();
         
-        System.out.println("Base de datos inicializada correctamente!");
+        if (!dataExists) {
+            System.out.println("Base de datos vacía - cargando datos iniciales...");
+            loadInitialData();
+            System.out.println("Base de datos inicializada correctamente!");
+        } else {
+            System.out.println("La base de datos ya contiene datos - omitiendo inicialización.");
+            System.out.println("Para recargar datos, elimina las tablas manualmente.");
+        }
+    }
+    
+    private boolean checkIfDataExists() {
+        try {
+            // Verificar si existen productos (indicador de que ya se cargaron datos)
+            var products = productService.findAll();
+            return !products.isEmpty();
+        } catch (Exception e) {
+            // Si hay error al consultar, asumimos que no hay datos
+            return false;
+        }
     }
 
     private void loadInitialData() throws Exception {
