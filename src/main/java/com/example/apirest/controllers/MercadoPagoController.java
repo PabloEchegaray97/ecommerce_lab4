@@ -210,4 +210,122 @@ public class MercadoPagoController {
                 .body("{\"error\":\"Orden no encontrada\"}");
         }
     }
+
+    // Endpoint para confirmar el pago con los parámetros de MercadoPago
+    @PostMapping("/confirm-payment")
+    public ResponseEntity<String> confirmPayment(@RequestBody Map<String, String> paymentData) {
+        try {
+            String orderIdStr = paymentData.get("orderId");
+            String paymentId = paymentData.get("payment_id");
+            String status = paymentData.get("status");
+            String collectionStatus = paymentData.get("collection_status");
+            
+            if (orderIdStr == null || paymentId == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Faltan parámetros requeridos: orderId y payment_id\"}");
+            }
+            
+            Integer orderId = Integer.parseInt(orderIdStr);
+            PurchaseOrder order = purchaseOrderService.findById(orderId);
+            
+            if (order == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Orden no encontrada\"}");
+            }
+            
+            // Verificar si el pago fue aprobado
+            boolean isApproved = "approved".equals(status) || "approved".equals(collectionStatus);
+            
+            if (isApproved) {
+                // Actualizar la orden como pagada
+                order.setStatus(PurchaseOrder.Status.PAID);
+                order.setPaymentId(paymentId);
+                order.setPaymentMethod("MercadoPago");
+                
+                PurchaseOrder updatedOrder = purchaseOrderService.update(orderId, order);
+                
+                System.out.println("=== PAGO CONFIRMADO ===");
+                System.out.println("Orden ID: " + orderId);
+                System.out.println("Payment ID: " + paymentId);
+                System.out.println("Estado: " + status);
+                System.out.println("Orden actualizada a PAID");
+                
+                return ResponseEntity.ok("{" +
+                    "\"success\":true," +
+                    "\"message\":\"Pago confirmado exitosamente\"," +
+                    "\"orderId\":" + orderId + "," +
+                    "\"paymentId\":\"" + paymentId + "\"," +
+                    "\"status\":\"PAID\"" +
+                    "}");
+            } else {
+                System.out.println("=== PAGO RECHAZADO ===");
+                System.out.println("Orden ID: " + orderId);
+                System.out.println("Payment ID: " + paymentId);
+                System.out.println("Estado: " + status);
+                
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"El pago no fue aprobado\",\"status\":\"" + status + "\"}");
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Error confirmando pago: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("{\"error\":\"Error al confirmar el pago: " + e.getMessage() + "\"}");
+        }
+    }
+
+    // Endpoint alternativo: confirmar pago directamente con parámetros GET (más simple)
+    @GetMapping("/confirm-payment/{orderId}")
+    public ResponseEntity<String> confirmPaymentGet(
+            @PathVariable Integer orderId,
+            @RequestParam(required = false) String payment_id,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String collection_status) {
+        
+        try {
+            if (payment_id == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"Falta el payment_id\"}");
+            }
+            
+            PurchaseOrder order = purchaseOrderService.findById(orderId);
+            
+            if (order == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Orden no encontrada\"}");
+            }
+            
+            // Verificar si el pago fue aprobado
+            boolean isApproved = "approved".equals(status) || "approved".equals(collection_status);
+            
+            if (isApproved) {
+                // Actualizar la orden como pagada
+                order.setStatus(PurchaseOrder.Status.PAID);
+                order.setPaymentId(payment_id);
+                order.setPaymentMethod("MercadoPago");
+                
+                PurchaseOrder updatedOrder = purchaseOrderService.update(orderId, order);
+                
+                System.out.println("=== PAGO CONFIRMADO (GET) ===");
+                System.out.println("Orden ID: " + orderId);
+                System.out.println("Payment ID: " + payment_id);
+                System.out.println("Estado: " + status);
+                
+                return ResponseEntity.ok("{" +
+                    "\"success\":true," +
+                    "\"message\":\"Pago confirmado exitosamente\"," +
+                    "\"orderId\":" + orderId + "," +
+                    "\"paymentId\":\"" + payment_id + "\"," +
+                    "\"status\":\"PAID\"" +
+                    "}");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"El pago no fue aprobado\",\"status\":\"" + status + "\"}");
+            }
+            
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("{\"error\":\"Error al confirmar el pago: " + e.getMessage() + "\"}");
+        }
+    }
 } 

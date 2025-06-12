@@ -67,7 +67,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/api/v1/details").authenticated()
                     
                     // Aprobar órdenes - requiere autenticación
-                    .requestMatchers(HttpMethod.PUT, "/api/v1/purchase-orders/*/approve").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/purchase-orders/*/approve").authenticated()
                     
                     // Nuevos endpoints de estado para productos - solo ADMIN
                     .requestMatchers(HttpMethod.PUT, "/api/v1/products/*/activate").hasAuthority("ADMIN")
