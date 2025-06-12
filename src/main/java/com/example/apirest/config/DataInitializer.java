@@ -669,9 +669,9 @@ public class DataInitializer implements CommandLineRunner {
         var users = userService.findAll();
         User cliente = null;
         
-        // Buscar el usuario cliente
+        // Buscar el usuario cliente por email
         for (User user : users) {
-            if ("juanperez".equals(user.getUsername())) {
+            if ("juan.perez@email.com".equals(user.getEmail())) {
                 cliente = user;
                 break;
             }
@@ -742,7 +742,7 @@ public class DataInitializer implements CommandLineRunner {
         var users = userService.findAll();
         User cliente = null;
         for (User user : users) {
-            if ("juanperez".equals(user.getUsername())) {
+            if ("juan.perez@email.com".equals(user.getEmail())) {
                 cliente = user;
                 break;
             }
@@ -835,7 +835,7 @@ public class DataInitializer implements CommandLineRunner {
         var users = userService.findAll();
         User cliente = null;
         for (User user : users) {
-            if ("juanperez".equals(user.getUsername())) {
+            if ("juan.perez@email.com".equals(user.getEmail())) {
                 cliente = user;
                 break;
             }
@@ -943,7 +943,7 @@ public class DataInitializer implements CommandLineRunner {
         var users = userService.findAll();
         User cliente = null;
         for (User user : users) {
-            if ("juanperez".equals(user.getUsername())) {
+            if ("juan.perez@email.com".equals(user.getEmail())) {
                 cliente = user;
                 break;
             }
@@ -1038,7 +1038,7 @@ public class DataInitializer implements CommandLineRunner {
         var users = userService.findAll();
         User cliente = null;
         for (User user : users) {
-            if ("juanperez".equals(user.getUsername())) {
+            if ("juan.perez@email.com".equals(user.getEmail())) {
                 cliente = user;
                 break;
             }

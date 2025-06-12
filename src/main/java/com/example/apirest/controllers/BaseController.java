@@ -72,4 +72,95 @@ public abstract class BaseController<E extends Base, ID extends Serializable> {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
+    
+    // Nuevos endpoints para manejo de estados
+    @GetMapping("/active")
+    public ResponseEntity<?> getAllActive() throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllActive());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/active/paged")
+    public ResponseEntity<?> getAllActive(Pageable pageable) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllActive(pageable));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/inactive")
+    public ResponseEntity<?> getAllInactive() throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllInactive());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/inactive/paged")
+    public ResponseEntity<?> getAllInactive(Pageable pageable) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllInactive(pageable));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/soft-deleted")
+    public ResponseEntity<?> getAllSoftDeleted() throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllSoftDeleted());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @GetMapping("/soft-deleted/paged")
+    public ResponseEntity<?> getAllSoftDeleted(Pageable pageable) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllSoftDeleted(pageable));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @PutMapping("/{id}/activate")
+    public ResponseEntity<?> activate(@PathVariable ID id) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.activate(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @PutMapping("/{id}/deactivate")
+    public ResponseEntity<?> deactivate(@PathVariable ID id) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.deactivate(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @PutMapping("/{id}/soft-delete")
+    public ResponseEntity<?> softDelete(@PathVariable ID id) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.softDelete(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<?> restore(@PathVariable ID id) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.restore(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
 }

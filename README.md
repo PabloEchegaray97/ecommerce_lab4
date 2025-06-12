@@ -66,3 +66,15 @@ Para contribuir al proyecto:
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más detalles. 
+
+
+
+//Endpoints nuevos
+
+GET    /api/v1/{entity}              # Solo activos y no eliminados
+GET    /api/v1/{entity}/active       # Solo activos
+GET    /api/v1/{entity}/inactive     # Solo inactivos
+GET    /api/v1/{entity}/soft-deleted # Solo eliminados suavemente
+PUT    /api/v1/{entity}/{id}/activate    # Activar elemento
+PUT    /api/v1/{entity}/{id}/deactivate  # Desactivar elemento
+PUT    /api/v1/{entity}/{id}/soft-delete # Eliminar suavemente

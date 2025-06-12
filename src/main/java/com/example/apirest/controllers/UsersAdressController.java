@@ -1,11 +1,14 @@
 package com.example.apirest.controllers;
 
+import com.example.apirest.entities.User;
 import com.example.apirest.entities.UsersAdress;
 import com.example.apirest.entities.UsersAdressId;
 import com.example.apirest.services.UsersAdressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,6 +44,22 @@ public class UsersAdressController {
             return ResponseEntity.status(HttpStatus.OK).body(usersAdressService.findByUserId(userId));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
+    
+    @GetMapping("/my-addresses")
+    public ResponseEntity<?> getMyAddresses() {
+        try {
+            // Obtener el usuario logueado desde el contexto de seguridad
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User currentUser = (User) authentication.getPrincipal();
+            
+            // Obtener las direcciones del usuario logueado
+            return ResponseEntity.status(HttpStatus.OK)
+                .body(usersAdressService.findByUserId(currentUser.getId()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
 

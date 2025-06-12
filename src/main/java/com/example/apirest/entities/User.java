@@ -76,6 +76,15 @@ public class User extends Base implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    public String getRealUsername() {
+        return username;
+    }
 }
 
 /*

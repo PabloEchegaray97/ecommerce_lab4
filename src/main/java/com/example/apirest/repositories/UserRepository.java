@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource(path = "users")
 public interface UserRepository extends BaseRepository<User, Integer> {
     Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
 } 

@@ -47,9 +47,9 @@ public class MercadoPagoController {
         items.add(item);
 
         PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                .success("http://localhost:5173/paymentSuccess")
-                .pending("http://localhost:5173/paymentPending")
-                .failure("http://localhost:5173/paymentFailure")
+                .success("https://localhost:5173/paymentSuccess")
+                .pending("https://localhost:5173/paymentPending")
+                .failure("https://localhost:5173/paymentFailure")
                 .build();
 
         List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
@@ -147,9 +147,9 @@ public class MercadoPagoController {
             items.add(item);
 
             PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                    .success("http://localhost:5173/paymentSuccess?orderId=" + orderId)
-                    .pending("http://localhost:5173/paymentPending?orderId=" + orderId)
-                    .failure("http://localhost:5173/paymentFailure?orderId=" + orderId)
+                    .success("https://localhost:5173/paymentSuccess?orderId=" + orderId)
+                    .pending("https://localhost:5173/paymentPending?orderId=" + orderId)
+                    .failure("https://localhost:5173/paymentFailure?orderId=" + orderId)
                     .build();
 
             List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
@@ -165,6 +165,7 @@ public class MercadoPagoController {
                     .backUrls(backUrls)
                     .paymentMethods(paymentMethods)
                     .externalReference(orderId.toString()) // Referencia a la orden
+                    .autoReturn("approved")
                     .build();
 
             PreferenceClient client = new PreferenceClient();
