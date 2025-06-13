@@ -114,7 +114,9 @@ public class DataInitializer implements CommandLineRunner {
             {"Blanco", "#FFFFFF"},
             {"Violeta", "#800080"}, // 8
             {"Morado", "#800080"}, // 9
-            {"Naranja", "#FFA500"} // 10
+            {"Naranja", "#FFA500"}, // 10
+            {"Rojo", "#FF0000"}, // 11
+            {"Bordo", "#800000"} // 12
             };
 
         for (String[] data : colourData) {
@@ -210,6 +212,7 @@ public class DataInitializer implements CommandLineRunner {
              "Un estilo hinchado de los 90 con suela de plataforma gruesa Las Knu Stack comienzan con nuestra interpretación moderna de una silueta clásica de los 90 y luego la lleva a un nivel superior. Con el doble de altura, una lengüeta hinchada y una banda lateral moldeada en 3D, este calzado directo cuenta con detalles de estilo dramáticos que combinan un ícono del pasado con las tendencias audaces de hoy. Zapato bajo reeditado de los 90. Altura de la plataforma de 34 mm. Parte superior de gamuza resistente.Lengüeta hinchada y cuello en el tobillo. Sidestripe hinchado moldeado en 3D. Cordones gruesos de gran tamaño. Suela exterior waffle de goma distintiva.",
              "http://localhost:9000/api/v1/product-images/files/classics/u_knu_stack_negro/1.jpg", 1, 1, 1},
 
+
             // Classic + (ID: 2)
             //hylane negro
             {"Vans Zapatillas U Hylane", 189000.0,
@@ -299,6 +302,22 @@ public class DataInitializer implements CommandLineRunner {
             {"Vans Zapatillas U Crosspath", 100.0,
             "Donde quiera que lo lleve su estilo de vida activo, MTE Crosspath lo tiene cubierto para explorar durante todo el día. Ampliando la inspiración detrás de la familia UltraRange de Vans, ofrece la combinación perfecta de estilo y funcionalidad para aventuras urbanas y al aire libre. Este zapato bajo resistente al agua combina una construcción liviana y consciente de la sostenibilidad con máxima amortiguación y tracción mejorada para cualquier terreno, desde el sendero hasta la calle. Este producto, que cuenta con el logotipo Vans Checkerboard Globe, está compuesto al menos en un 30 % de uno o una combinación de materiales reciclados y renovables.CARACTERÍSTICAS DEL PRODUCTO: IMPERMEABLE: El tratamiento repelente al agua duradero lo ayuda a enfrentar los elementos, brindando resistencia al agua de primer nivel.DURABILIDAD: La malla de PET reciclada, liviana y resistente, y la parte superior textil con paneles reforzados contra la abrasión ofrecen mayor protección y agilidad. TRACCIÓN: La suela exterior rediseñada presenta una banda de rodadura diseñada específicamente para terrenos mixtos, irregulares, sueltos o mojados.COMODIDAD Y ESTABILIDAD: La tecnología UltraCush del MTE Crosspath proporciona la máxima amortiguación.",
             "http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/1.jpg",4, 1, 1},
+
+
+            // portada
+
+            // u sk8
+            {"U SK8-HI ", 100.0,
+            "Las Sk8-Hi de Vans son unas zapatillas ligeras, de caña alta y con cordones. Presenta amortiguación en el talón para más confort, una puntera reforzada que garantiza la durabilidad y cuello acolchado para mayor sujeción y flexibilidad. Está hecha c... ",
+            "https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2024/12/6/10254259_800.jpg", 1, 1, 1},
+            //U Super Lowpro
+            {"U Super Lowpro", 100.0,
+            "Un clásico de perfil bajo con un toque moderno Las Super Lowpro reinventan el legado de Vans inspirándose en las zapatillas de competición Serio – Style 84. Diseñadas para ofrecer comodidad, ajuste y versatilidad, son ideales para quienes buscan un...",
+            "https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/28/10537360_800.jpg", 2, 11, 1},
+            //U MTE Sk8-Hi GORE-TEX
+            {"U MTE Sk8-Hi GORE-TEX", 100.0,
+            "El modelo MTE Sk8-Hi GORE-TEX está preparado para todo terreno y está diseñado para ofrecer la máxima protección contra los elementos. Construido con la tecnología para todo clima técnicamente más avanzada y diseñada específicamente de Vans, qu...",
+            "https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/4/30/10746895_800.jpg", 3, 12, 1},
 
         };
 
@@ -483,6 +502,28 @@ public class DataInitializer implements CommandLineRunner {
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/2.jpg", 26, false},
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/3.jpg", 26, false},
             {"http://localhost:9000/api/v1/product-images/files/surf/u_cross_negro/4.jpg", 26, false},
+
+            // portada usk8 27
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2024/12/6/10254259_800.jpg", 27, true},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2024/12/6/10254041_800.jpg", 27, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2024/12/6/10254042_800.jpg", 27, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2024/12/6/10254043_800.jpg", 27, false},
+
+            //portada super lowpro 28
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/28/10537360_800.jpg", 28, true},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/28/10537361_800.jpg", 28, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/28/10537362_800.jpg", 28, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/28/10537363_800.jpg", 28, false},
+
+            //portada mte sk8-hi gore-tex 29
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/4/30/10746895_800.jpg", 29, true},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/30/10540915_800.jpg", 29, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/30/10540916_800.jpg", 29, false},
+            {"https://mmgrim2.azureedge.net/MediaFiles/Grimoldi/2025/1/30/10540917_800.jpg", 29, false},
+
+
+
+
 
 
 
