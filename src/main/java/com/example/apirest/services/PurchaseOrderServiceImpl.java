@@ -37,24 +37,6 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder, Int
 
     @Override
     @Transactional
-    public PurchaseOrder save(PurchaseOrder entity) throws Exception {
-        PurchaseOrder savedOrder = super.save(entity);
-        // Restar stock por cada detalle
-        List<Detail> detalles = detailRepository.findByOrderId(savedOrder.getId());
-        for (Detail detalle : detalles) {
-            ProductSizeId psId = new ProductSizeId(detalle.getSizeId(), detalle.getProductId());
-            ProductSize ps = productSizeRepository.findById(psId).orElse(null);
-            if (ps != null) {
-                int nuevoStock = ps.getStock() - detalle.getQuantity();
-                ps.setStock(Math.max(nuevoStock, 0));
-                productSizeRepository.save(ps);
-            }
-        }
-        return savedOrder;
-    }
-
-    @Override
-    @Transactional
     public PurchaseOrder update(Integer id, PurchaseOrder entity) throws Exception {
         // Si se cancela la orden, devolver stock
         PurchaseOrder original = purchaseOrderRepository.findById(id).orElse(null);
@@ -66,6 +48,13 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder, Int
                 if (ps != null) {
                     ps.setStock(ps.getStock() + detalle.getQuantity());
                     productSizeRepository.save(ps);
+                    
+                    System.out.println("=== STOCK DEVUELTO POR CANCELACIÓN ===");
+                    System.out.println("Orden ID: " + id);
+                    System.out.println("Producto ID: " + detalle.getProductId());
+                    System.out.println("Talle ID: " + detalle.getSizeId());
+                    System.out.println("Cantidad devuelta: " + detalle.getQuantity());
+                    System.out.println("Stock actualizado: " + ps.getStock());
                 }
             }
         }

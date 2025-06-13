@@ -48,6 +48,10 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api/v1/product-sizes/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/v1/addresses/**").hasAuthority("ADMIN")
                     
+                    // Carousel Images - GET requests públicos
+                    .requestMatchers(HttpMethod.GET, "/api/v1/carousel-images/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/v1/category-images/**").permitAll()
+                    
                     // Swagger/OpenAPI - público
                     .requestMatchers("/swagger-ui/**", "/api-docs/**", "/swagger-ui.html").permitAll()
                     
@@ -150,6 +154,13 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.PUT, "/api/v1/details/*/soft-delete").authenticated()
                     .requestMatchers(HttpMethod.PUT, "/api/v1/details/*/restore").authenticated()
                     
+                    // Nuevos endpoints de estado para carousel images - solo ADMIN
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/*/activate").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/*/deactivate").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/*/soft-delete").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/*/restore").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/*/position").hasAuthority("ADMIN")
+                    
                     // GET requests de usuarios - públicos (después de las reglas específicas)
                     .requestMatchers(HttpMethod.GET, "/api/v1/users/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/v1/user-addresses/**").permitAll()
@@ -186,6 +197,15 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/api/v1/product-sizes/**").hasAuthority("ADMIN")
                     .requestMatchers(HttpMethod.PUT, "/api/v1/product-sizes/**").hasAuthority("ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/api/v1/product-sizes/**").hasAuthority("ADMIN")
+                    
+                    // Carousel Images - POST, PUT, DELETE solo ADMIN
+                    .requestMatchers(HttpMethod.POST, "/api/v1/carousel-images/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/carousel-images/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/api/v1/carousel-images/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/v1/category-images/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/v1/category-images/create").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/api/v1/category-images/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/api/v1/category-images/**").hasAuthority("ADMIN")
                     
                     // Usuarios - solo ADMIN
                     // .requestMatchers("/api/v1/users/**").hasAuthority("ADMIN")
