@@ -67,4 +67,42 @@ public class PurchaseOrderController extends BaseController<PurchaseOrder, Integ
                 .body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
+
+    @PutMapping("/{orderId}/cancel")
+    public ResponseEntity<?> cancelOrder(@PathVariable Integer orderId) {
+        try {
+            // Obtener la orden
+            PurchaseOrder order = purchaseOrderServiceImpl.findById(orderId);
+            
+            if (order == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("{\"error\":\"Orden no encontrada\"}");
+            }
+            
+            // Verificar que la orden no esté ya cancelada
+            if (order.getStatus() == PurchaseOrder.Status.CANCELLED) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"La orden ya está cancelada\"}");
+            }
+            
+            // Verificar que la orden no esté pagada
+            if (order.getStatus() == PurchaseOrder.Status.PAID) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("{\"error\":\"No se puede cancelar una orden ya pagada\"}");
+            }
+            
+            // Actualizar el estado a CANCELLED
+            order.setStatus(PurchaseOrder.Status.CANCELLED);
+            
+            // Guardar los cambios
+            PurchaseOrder updatedOrder = purchaseOrderServiceImpl.update(orderId, order);
+            
+            return ResponseEntity.status(HttpStatus.OK)
+                .body("{\"message\":\"Orden cancelada exitosamente\",\"order\":\"" + updatedOrder + "\"}");
+            
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
 }

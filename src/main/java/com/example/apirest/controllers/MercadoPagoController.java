@@ -166,6 +166,7 @@ public class MercadoPagoController {
                     .paymentMethods(paymentMethods)
                     .externalReference(orderId.toString()) // Referencia a la orden
                     .autoReturn("approved")
+                    .statementDescriptor("Vans")
                     .build();
 
             PreferenceClient client = new PreferenceClient();

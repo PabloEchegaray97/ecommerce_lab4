@@ -20,7 +20,11 @@ public class UsersAdressService {
     @Transactional
     public List<UsersAdress> findAll() throws Exception {
         try {
-            return usersAdressRepository.findAll();
+            List<UsersAdress> addresses = usersAdressRepository.findAll();
+            if (addresses.isEmpty()) {
+                throw new Exception("No se encontraron direcciones");
+            }
+            return addresses;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -30,6 +34,9 @@ public class UsersAdressService {
     public UsersAdress findById(UsersAdressId id) throws Exception {
         try {
             Optional<UsersAdress> entityOptional = usersAdressRepository.findById(id);
+            if (!entityOptional.isPresent()) {
+                throw new Exception("No se encontró la dirección con id: " + id);
+            }
             return entityOptional.get();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -39,7 +46,11 @@ public class UsersAdressService {
     @Transactional
     public List<UsersAdress> findByUserId(Integer userId) throws Exception {
         try {
-            return usersAdressRepository.findByUserId(userId);
+            List<UsersAdress> addresses = usersAdressRepository.findByUserId(userId);
+            if (addresses.isEmpty()) {
+                throw new Exception("No se encontraron direcciones para el usuario con id: " + userId);
+            }
+            return addresses;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -48,6 +59,9 @@ public class UsersAdressService {
     @Transactional
     public UsersAdress save(UsersAdress entity) throws Exception {
         try {
+            if (entity.getUserId() == null || entity.getAddressId() == null) {
+                throw new Exception("El userId y addressId son requeridos");
+            }
             entity = usersAdressRepository.save(entity);
             return entity;
         } catch (Exception e) {
@@ -60,7 +74,7 @@ public class UsersAdressService {
         try {
             Optional<UsersAdress> entityOptional = usersAdressRepository.findById(id);
             if (!entityOptional.isPresent()) {
-                throw new Exception("No se encontró el registro con id: " + id);
+                throw new Exception("No se encontró la dirección con id: " + id);
             }
             UsersAdress usersAdress = entityOptional.get();
             BeanUtils.copyProperties(entity, usersAdress, "userId", "addressId");    
@@ -77,7 +91,7 @@ public class UsersAdressService {
                 usersAdressRepository.deleteById(id);
                 return true;
             } else {
-                throw new Exception("No existe el registro con id: " + id);
+                throw new Exception("No existe la dirección con id: " + id);
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
