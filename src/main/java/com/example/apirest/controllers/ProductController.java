@@ -23,6 +23,36 @@ public class ProductController extends BaseController<Product, Integer> {
         super(productServiceImp);
     }
 
+    @Override
+    @GetMapping()
+    public ResponseEntity<?> getAll() throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productServiceImp.findAllActiveFiltered());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
+        }
+    }
+
+    @Override
+    @GetMapping("/active")
+    public ResponseEntity<?> getAllActive() throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productServiceImp.findAllActiveFiltered());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
+        }
+    }
+
+    @Override
+    @GetMapping("/active/paged")
+    public ResponseEntity<?> getAllActive(Pageable pageable) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(productServiceImp.findAllActiveFiltered());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
+        }
+    }
+
     @GetMapping("/search")
     public ResponseEntity<?> search(@RequestParam String filtro, Pageable pageable) {
         try {

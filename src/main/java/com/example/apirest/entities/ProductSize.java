@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.hibernate.envers.Audited;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -37,6 +38,12 @@ public class ProductSize implements Serializable {
     
     @Column(name = "stock")
     private Integer stock;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 
     @ManyToOne
     @JoinColumn(name = "id_size", referencedColumnName = "id", insertable = false, updatable = false)

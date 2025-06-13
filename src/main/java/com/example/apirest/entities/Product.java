@@ -65,6 +65,13 @@ public class Product extends Base  {
     @JsonManagedReference
     private List<ProductSize> availableSizes;
 
+    public List<ProductSize> getAvailableSizes() {
+        if (availableSizes == null) return null;
+        return availableSizes.stream()
+            .filter(ps -> ps.getDeletedAt() == null && Boolean.TRUE.equals(ps.getIsActive()))
+            .toList();
+    }
+
 }
 
 

@@ -44,4 +44,17 @@ public class ProductServiceImp extends BaseServiceImpl<Product, Integer> impleme
             throw new Exception(e.getMessage());
         }
     }
+
+    public List<Product> findAllActiveFiltered() throws Exception {
+        List<Product> productos = super.findAllActive();
+        return productos.stream()
+            .filter(p -> 
+                p.getColour() != null && p.getColour().getDeletedAt() == null && Boolean.TRUE.equals(p.getColour().getIsActive()) &&
+                p.getCategory() != null && p.getCategory().getDeletedAt() == null && Boolean.TRUE.equals(p.getCategory().getIsActive()) &&
+                p.getBrand() != null && p.getBrand().getDeletedAt() == null && Boolean.TRUE.equals(p.getBrand().getIsActive())
+                // Si tenés tipo (Type), agregalo acá:
+                // && p.getType() != null && p.getType().getDeletedAt() == null && Boolean.TRUE.equals(p.getType().getIsActive())
+            )
+            .toList();
+    }
 }

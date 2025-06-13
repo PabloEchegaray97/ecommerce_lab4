@@ -149,4 +149,26 @@ public class ProductSizeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
+
+    @PutMapping("/update-multiple-stock")
+    public ResponseEntity<?> updateMultipleStock(@RequestBody List<Map<String, Object>> stockUpdates) {
+        try {
+            for (Map<String, Object> update : stockUpdates) {
+                Integer idProduct = (Integer) update.get("idProduct");
+                Integer idSize = (Integer) update.get("idSize");
+                Integer stock = (Integer) update.get("stock");
+                if (idProduct == null || idSize == null || stock == null) continue;
+                ProductSizeId psId = new ProductSizeId(idSize, idProduct);
+                ProductSize ps = productSizeService.findById(psId);
+                if (ps != null) {
+                    ps.setStock(stock);
+                    productSizeService.update(psId, ps);
+                }
+            }
+            return ResponseEntity.ok("{\"message\":\"Stock actualizado correctamente\"}");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("{\"error\":\"" + e.getMessage() + "\"}");
+        }
+    }
 } 
